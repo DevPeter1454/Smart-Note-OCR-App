@@ -8,6 +8,15 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _snackbarService = locator<SnackbarService>();
+
+  void showSnackBar(){
+    _snackbarService.showSnackbar(
+      message: 'This is a snackbar',
+      title: 'Stacked Rocks!',
+      duration: const Duration(seconds: 2),
+    );
+  }
 
   String get counterLabel => 'Counter is: $_counter';
 
