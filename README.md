@@ -17,6 +17,7 @@ $ git checkout main
 $ flutter pub get
 ``` 
 from the root of the project to fetch all dependencies
+
 4. Run 
 ```sh 
 $ flutter run
@@ -83,3 +84,20 @@ The use of the logger is optional. It is recommended to use the logger for debug
 
 ## Commits Guidlines
  All PRs must be according to the recommended naming convention. (https://www.conventionalcommits.org/en/v1.0.0/)
+
+### Color 
+According to the color style, when you want to use the Primary color, it is called by `kcPrimaryColor`.
+When you want to add a shade to it, it is called by `AppColors.kPrimaryColor.shade100`.
+
+You can go through the `colors.dart` file to see the kind of color you need.
+
+### Text Style
+According to the text style, it is called by `kDisplayLargeTextStyle` it can be used according to the style you want to implement.
+
+You can go throught the `text_styles.dart` file to see the kind of text styles you need.
+
+### Spacing Style 
+According to the text style, it is called by `horizontalSpaceLarge` for horizontal spacing and `verticalSpaceLarge` for vertical spacing.
+
+You can go throught the `spacing.dart` file to see the kind of spacing you need.
+
