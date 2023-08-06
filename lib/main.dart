@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartnote/app/app.bottomsheets.dart';
 import 'package:smartnote/app/app.dialogs.dart';
 import 'package:smartnote/app/app.locator.dart';
@@ -8,7 +9,7 @@ import 'package:smartnote/ui/common/app_colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_auth_platform_interface/src/action_code_settings.dart';
+// import 'package:firebase_auth_platform_interface/src/action_code_settings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +37,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: FToastBuilder(),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
@@ -45,8 +47,14 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           // primarySwatch:  Color(0xFF0D121D),
+
           colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: MaterialColor(0xFF0D121D, colorSwatch),
+            primarySwatch: MaterialColor(
+              0xFF0D121D,
+              colorSwatch,
+            ),
+          ).copyWith(
+            secondary: const Color(0xFF0D121D),
           ),
           textTheme: const TextTheme(
             headlineSmall: TextStyle(
@@ -139,14 +147,14 @@ class MainApp extends StatelessWidget {
         },
         '/verify-email': (context) {
           return EmailVerificationScreen(
-            actionCodeSettings: ActionCodeSettings(
-              url: 'https://smart-notes-5682c.firebaseapp.com/__/auth/handler',
-              handleCodeInApp: true,
-              // iOSBundleId: 'com.smartnote',
-              androidPackageName: 'com.smartnote',
-              androidInstallApp: true,
-              androidMinimumVersion: '16',
-            ),
+            // actionCodeSettings: ActionCodeSettings(
+            //   url: 'https://smart-notes-5682c.firebaseapp.com/__/auth/handler',
+            //   handleCodeInApp: true,
+            //   // iOSBundleId: 'com.smartnote',
+            //   androidPackageName: 'com.smartnote',
+            //   androidInstallApp: true,
+            //   androidMinimumVersion: '16',
+            // ),
             actions: [
               EmailVerifiedAction(() {
                 final snackbarService = locator<SnackbarService>();

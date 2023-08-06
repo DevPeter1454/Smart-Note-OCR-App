@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-const Color kcPrimaryColor = Color(0xFF9600FF);
+const Color kcPrimaryColor = Color.fromARGB(100, 18, 25, 38);
 const Color kcPrimaryColorDark = Color(0xFF300151);
 const Color kcDarkGreyColor = Color(0xFF1A1B1E);
 const Color kcMediumGrey = Color(0xFF474A54);
 const Color kcLightGrey = Color.fromARGB(255, 187, 187, 187);
 const Color kcVeryLightGrey = Color(0xFFE3E3E3);
 const Color kcBackgroundColor = kcDarkGreyColor;
-
-
+const Color kcButtonColor = Color(0xFFFF1A5B);
+const Color kcTertiaryColor = Color(0xFF4741FF);
 
 Map<int, Color> colorSwatch = {
   50: const Color.fromARGB(50, 13, 18, 29),

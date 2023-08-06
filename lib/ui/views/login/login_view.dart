@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/app_colors.dart';
 import 'package:smartnote/ui/common/app_strings.dart';
+import 'package:smartnote/ui/common/text_validators.dart';
+import 'package:smartnote/ui/common/ui_helpers.dart';
 import 'package:smartnote/ui/views/login/login_view.form.dart';
+import 'package:smartnote/ui/widgets/common/custom_button/custom_button.dart';
+import 'package:smartnote/ui/widgets/common/custom_textfield/custom_textfield.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -33,7 +37,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     child: Container(
                       width: double.infinity,
                       constraints: const BoxConstraints(
@@ -43,8 +47,8 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                           // color: Theme.of(context).colorScheme.background,
                           ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20, 12, 20, 12),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -81,6 +85,140 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                                     .copyWith(color: kcMediumGrey),
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 16, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 16, 0, 0),
+                                      child: CustomTextfield(
+                                        controller: emailController,
+                                        labelText: ksEmailControllerLabel,
+                                        hintText: ksEmailControllerHintText,
+                                        textInputType:
+                                            TextInputType.emailAddress,
+                                        // validator: TextValidators.validateEmail,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (viewModel.hasEmailValidationMessage) ...[
+                              // verticalSpaceTiny,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  viewModel.emailValidationMessage!,
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            //Password
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 16, 0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 16, 0, 0),
+                                      child: CustomTextfield(
+                                        controller: passwordController,
+                                        labelText: ksPasswordControllerLabel,
+                                        hintText: ksPasswordControllerHintText,
+                                        textInputType:
+                                            TextInputType.visiblePassword,
+                                        isPassword: true,
+                                        // validator: ,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            if (viewModel.hasPasswordValidationMessage) ...[
+                              // verticalSpaceTiny,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  viewModel.passwordValidationMessage!,
+                                  style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 16, 0, 0),
+                              child: Center(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextButton(
+                                      onPressed: viewModel.forgotPassword,
+                                      child: Text(
+                                        ksForgotPasswordText,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(color: kcLightGrey),
+                                      ),
+                                    ),
+                                    CustomButton(
+                                        onPressed: viewModel.login,
+                                        backgroundColor: kcButtonColor,
+                                        text: ksSignInButtonText,
+                                        size:
+                                            Size(thirdScreenWidth(context), 50),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelLarge!
+                                            .copyWith(color: Colors.white)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            verticalSpaceLarge,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  ksDoNotHaveAnAccountText,
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                InkWell(
+                                  onTap: viewModel.navigateToCreateAccount,
+                                  child: Text(
+                                    ksCreateAccountText,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(color: kcTertiaryColor),
+                                  ),
+                                )
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -93,6 +231,11 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(LoginViewModel viewModel) {
+    syncFormWithViewModel(viewModel);
   }
 
   @override
