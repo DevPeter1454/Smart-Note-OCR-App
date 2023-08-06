@@ -1,3 +1,4 @@
+import 'package:smartnote/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -13,6 +14,6 @@ class StartupViewModel extends BaseViewModel {
     // you have custom startup logic
 
     // _navigationService.replaceWithHomeView();
-    _navigationService.replaceWith('/login');
+    _navigationService.replaceWith(Routes.loginView);
   }
 }

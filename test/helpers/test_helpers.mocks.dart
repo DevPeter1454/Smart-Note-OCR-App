@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 import 'dart:ui' as _i5;
 
+import 'package:firebase_auth/firebase_auth.dart' as _i7;
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:smartnote/services/authentication_service.dart' as _i6;
@@ -633,4 +634,124 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthenticationService extends _i1.Mock
-    implements _i6.AuthenticationService {}
+    implements _i6.AuthenticationService {
+  @override
+  _i4.Stream<_i7.User?> get currentStream => (super.noSuchMethod(
+        Invocation.getter(#currentStream),
+        returnValue: _i4.Stream<_i7.User?>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i7.User?>.empty(),
+      ) as _i4.Stream<_i7.User?>);
+  @override
+  _i4.Future<void> signInWithEmailAndPassword({
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signInWithEmailAndPassword,
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> createUserWithEmailAndPassword({
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createUserWithEmailAndPassword,
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> signOut() => (super.noSuchMethod(
+        Invocation.method(
+          #signOut,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> sendPasswordResetEmail({required String? email}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #sendPasswordResetEmail,
+          [],
+          {#email: email},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> verifyEmail() => (super.noSuchMethod(
+        Invocation.method(
+          #verifyEmail,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> reloadUser() => (super.noSuchMethod(
+        Invocation.method(
+          #reloadUser,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> deleteUser() => (super.noSuchMethod(
+        Invocation.method(
+          #deleteUser,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> updateEmail({required String? email}) => (super.noSuchMethod(
+        Invocation.method(
+          #updateEmail,
+          [],
+          {#email: email},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> updatePassword({required String? password}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updatePassword,
+          [],
+          {#password: password},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<void> updateDisplayName({required String? displayName}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateDisplayName,
+          [],
+          {#displayName: displayName},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
