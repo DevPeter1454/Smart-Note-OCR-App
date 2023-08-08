@@ -39,6 +39,7 @@ class SignupViewModel extends FormViewModel {
           message: 'Account created successfully',
           duration: const Duration(seconds: 2),
           title: 'Create Account');
+      _navigationService.clearStackAndShow(Routes.homeView);
     } on FirebaseException catch (e) {
       log.e(e);
       _snackBarService.showSnackbar(

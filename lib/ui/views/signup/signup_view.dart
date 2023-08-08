@@ -30,7 +30,6 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        
         body: SafeArea(
           top: true,
           child: Align(

@@ -37,4 +37,61 @@ class FirestoreService {
         .doc(currentUser!.uid)
         .update({'email': email});
   }
+
+  Future<void> addNote(String title, String content) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('notes')
+        .add({
+      'title': title,
+      'content': content,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> updateNote(
+      {required String title,
+      required String content,
+      required String noteId}) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('notes')
+        .doc(noteId)
+        .update({
+      'title': title,
+      'content': content,
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  Future<void> deleteNote({
+    required String noteId,
+  }) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('notes')
+        .doc(noteId)
+        .delete();
+  }
+
+  Stream<QuerySnapshot> getNotes() {
+    return _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('notes')
+        .orderBy('createdAt', descending: true)
+        .snapshots();
+  }
+
+  Stream<DocumentSnapshot> getNoteDetail({required String noteId}) {
+    return _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('notes')
+        .doc(noteId)
+        .snapshots();
+  }
 }

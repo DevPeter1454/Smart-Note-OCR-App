@@ -6,7 +6,7 @@ import 'package:smartnote/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class StartupViewModel extends StreamViewModel {
-  final _navigationService = locator<NavigationService>();
+  // final _navigationService = locator<NavigationService>();
   final _authenticationService = locator<AuthenticationService>();
   final log = getLogger('StartupViewModel');
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -14,7 +14,6 @@ class StartupViewModel extends StreamViewModel {
   // Stream<User?> get currentStream => _authenticationService.currentStream;
 
   User? get currentUser => data;
-
 
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
@@ -28,5 +27,5 @@ class StartupViewModel extends StreamViewModel {
   }
 
   @override
-  Stream get stream => _authenticationService.currentStream ;
+  Stream get stream => _authenticationService.currentStream;
 }

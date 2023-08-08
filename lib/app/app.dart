@@ -13,6 +13,10 @@ import 'package:smartnote/services/firestore_service.dart';
 
 import 'package:smartnote/ui/views/verify_email/verify_email_view.dart';
 import 'package:smartnote/ui/views/home/home_view.dart';
+import 'package:smartnote/ui/views/notes/notes_view.dart';
+import 'package:smartnote/ui/views/profile/profile_view.dart';
+import 'package:smartnote/ui/views/chats/chats_view.dart';
+import 'package:smartnote/ui/views/add_note/add_note_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -22,6 +26,10 @@ import 'package:smartnote/ui/views/home/home_view.dart';
     MaterialRoute(page: SignupView),
     MaterialRoute(page: VerifyEmailView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: NotesView),
+    MaterialRoute(page: ProfileView),
+    MaterialRoute(page: ChatsView),
+    MaterialRoute(page: AddNoteView),
 // @stacked-route
   ],
   dependencies: [

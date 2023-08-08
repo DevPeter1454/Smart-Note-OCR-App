@@ -93,6 +93,8 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           ),
           borderRadius: BorderRadius.circular(40),
         ),
+        filled: true,
+        fillColor: kcLightGrey.withOpacity(0.3),
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 24, 0, 24),
       ),
     );
