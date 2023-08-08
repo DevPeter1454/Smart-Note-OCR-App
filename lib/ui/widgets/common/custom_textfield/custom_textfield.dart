@@ -51,7 +51,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                   passwordVisibility == true
                       ? Icons.visibility
                       : Icons.visibility_off,
-                  color: kcLightGrey.withOpacity(0.6),
+                  color: kcLightGrey,
                 ),
               )
             : null,
@@ -93,8 +93,6 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           ),
           borderRadius: BorderRadius.circular(40),
         ),
-        filled: true,
-        fillColor: Theme.of(context).colorScheme.background,
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 24, 0, 24),
       ),
     );

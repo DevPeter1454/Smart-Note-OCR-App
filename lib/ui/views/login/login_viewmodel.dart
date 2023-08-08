@@ -22,6 +22,9 @@ class LoginViewModel extends FormViewModel {
     try {
       await _authenticationService.signInWithEmailAndPassword(
           email: emailValue!, password: passwordValue!);
+      _snackBarService.showSnackbar(
+          message: 'Login Successful', duration: const Duration(seconds: 2));
+      await _navigationService.clearStackAndShow(Routes.homeView);
     } on FirebaseAuthException catch (e) {
       log.e(e);
       _snackBarService.showSnackbar(
