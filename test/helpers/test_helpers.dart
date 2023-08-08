@@ -4,6 +4,8 @@ import 'package:smartnote/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'package:smartnote/services/authentication_service.dart';
+import 'package:smartnote/services/firestore_service.dart';
+
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -14,6 +16,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
 
   MockSpec<AuthenticationService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<FirestoreService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -22,6 +25,8 @@ void registerServices() {
   getAndRegisterDialogService();
 
   getAndRegisterAuthenticationService();
+  getAndRegisterFirestoreService();
+
 // @stacked-mock-register
 }
 
@@ -81,6 +86,14 @@ MockAuthenticationService getAndRegisterAuthenticationService() {
   locator.registerSingleton<AuthenticationService>(service);
   return service;
 }
+
+MockFirestoreService getAndRegisterFirestoreService() {
+  _removeRegistrationIfExists<FirestoreService>();
+  final service = MockFirestoreService();
+  locator.registerSingleton<FirestoreService>(service);
+  return service;
+}
+
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

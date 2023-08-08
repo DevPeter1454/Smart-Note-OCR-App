@@ -16,3 +16,8 @@ const String ksCreateAccountText = ' Create Account';
 const String ksSignUpViewWelcomeText = 'Get Started!';
 const String ksSignUpViewWelcomeSubtitle =
     'Create an account by using the form below.';
+const String ksAlreadyHaveAccount = 'Already have an account?  ';
+const String ksLoginText = ' Login';
+const String ksSignUpButtonText = 'Sign Up';
+const String ksDisplayNameController = 'Display Name';
+const String ksDisplayNameControllerHintText = 'Enter your display name here';

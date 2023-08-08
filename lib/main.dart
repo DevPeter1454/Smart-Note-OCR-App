@@ -1,6 +1,5 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smartnote/app/app.bottomsheets.dart';
 import 'package:smartnote/app/app.dialogs.dart';
 import 'package:smartnote/app/app.locator.dart';
@@ -37,7 +36,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: FToastBuilder(),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,

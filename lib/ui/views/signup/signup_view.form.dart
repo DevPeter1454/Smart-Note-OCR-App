@@ -23,7 +23,7 @@ final Map<String, FocusNode> _SignupViewFocusNodes = {};
 final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
   EmailValueKey: TextValidators.validateEmail,
   PasswordValueKey: TextValidators.validatePassword,
-  DisplayNameValueKey: null,
+  DisplayNameValueKey: TextValidators.validateDisplayName,
 };
 
 mixin $SignupView {

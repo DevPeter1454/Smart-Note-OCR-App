@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -6,6 +7,8 @@ class AuthenticationService {
   User? get currentUser => _firebaseAuth.currentUser;
 
   Stream<User?> get currentStream => _firebaseAuth.authStateChanges();
+
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   Future<void> signInWithEmailAndPassword(
       {required String email, required String password}) async {
@@ -55,11 +58,29 @@ class AuthenticationService {
     await _firebaseAuth.currentUser!.updatePassword(password);
   }
 
-  Future<void> updateDisplayName({
+  Future<void> createNewUser({
+    required String email,
     required String displayName,
   }) async {
-    await _firebaseAuth.currentUser!.updateDisplayName(displayName);
+    // log.d(currentUser!.uid);
+    await _firebaseFirestore.collection('users').doc(currentUser!.uid).set({
+      'email': email,
+      'displayName': displayName,
+    });
   }
 
+  Future<void> updateDisplayName({required String displayName}) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .update({'displayName': displayName});
+  }
+
+  Future<void> updateEmailInDB({required String email}) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .update({'email': email});
+  }
   // Future<void>
 }

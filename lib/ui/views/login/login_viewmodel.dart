@@ -36,6 +36,8 @@ class LoginViewModel extends FormViewModel {
     setBusy(true);
     try {
       await _authenticationService.sendPasswordResetEmail(email: emailValue!);
+      _snackBarService.showSnackbar(
+          message: 'Password reset request sent to your email');
     } on FirebaseAuthException catch (e) {
       log.e(e);
       _snackBarService.showSnackbar(
@@ -43,6 +45,7 @@ class LoginViewModel extends FormViewModel {
           duration: const Duration(seconds: 2),
           title: 'Forgot Password Error');
     }
+    setBusy(false);
   }
 
   Future<void> navigateToCreateAccount() async {

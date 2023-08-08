@@ -19,4 +19,14 @@ class TextValidators {
     }
     return null;
   }
+
+  static String? validateDisplayName(String? value) {
+    if (value!.isEmpty) {
+      return 'Display Name is required';
+    }
+    if (value.length < 6) {
+      return 'Display Name must be at least 6 characters';
+    }
+    return null;
+  }
 }
