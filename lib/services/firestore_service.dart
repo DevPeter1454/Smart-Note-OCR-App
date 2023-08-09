@@ -38,29 +38,27 @@ class FirestoreService {
         .update({'email': email});
   }
 
-  Future<void> addNote(String title, String content) async {
-    await _firebaseFirestore
+  Future<String> addNote(List<dynamic> content) async {
+    final response = await _firebaseFirestore
         .collection('users')
         .doc(currentUser!.uid)
         .collection('notes')
         .add({
-      'title': title,
       'content': content,
       'createdAt': FieldValue.serverTimestamp(),
     });
+    log.d(response.id);
+    return response.id;
   }
 
   Future<void> updateNote(
-      {required String title,
-      required String content,
-      required String noteId}) async {
+      {required String content, required String noteId}) async {
     await _firebaseFirestore
         .collection('users')
         .doc(currentUser!.uid)
         .collection('notes')
         .doc(noteId)
         .update({
-      'title': title,
       'content': content,
       'updatedAt': FieldValue.serverTimestamp(),
     });

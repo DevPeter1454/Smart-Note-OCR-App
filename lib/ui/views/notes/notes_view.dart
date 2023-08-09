@@ -29,7 +29,7 @@ class NotesView extends StackedView<NotesViewModel> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // viewModel.navigateToCreateNoteView();
+            viewModel.navigateToCreateNoteView();
           },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

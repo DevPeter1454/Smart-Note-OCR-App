@@ -6,6 +6,7 @@
 import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
+import 'package:cloud_firestore/cloud_firestore.dart' as _i10;
 import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:flutter/material.dart' as _i4;
 import 'package:logger/src/logger.dart' as _i2;
@@ -851,19 +852,62 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i5.Future<void> addNote(
-    String? title,
-    String? content,
-  ) =>
-      (super.noSuchMethod(
+  _i5.Future<void> addNote(String? content) => (super.noSuchMethod(
         Invocation.method(
           #addNote,
-          [
-            title,
-            content,
-          ],
+          [content],
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> updateNote({
+    required String? content,
+    required String? noteId,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateNote,
+          [],
+          {
+            #content: content,
+            #noteId: noteId,
+          },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> deleteNote({required String? noteId}) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteNote,
+          [],
+          {#noteId: noteId},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Stream<_i10.QuerySnapshot<Object?>> getNotes() => (super.noSuchMethod(
+        Invocation.method(
+          #getNotes,
+          [],
+        ),
+        returnValue: _i5.Stream<_i10.QuerySnapshot<Object?>>.empty(),
+        returnValueForMissingStub:
+            _i5.Stream<_i10.QuerySnapshot<Object?>>.empty(),
+      ) as _i5.Stream<_i10.QuerySnapshot<Object?>>);
+  @override
+  _i5.Stream<_i10.DocumentSnapshot<Object?>> getNoteDetail(
+          {required String? noteId}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getNoteDetail,
+          [],
+          {#noteId: noteId},
+        ),
+        returnValue: _i5.Stream<_i10.DocumentSnapshot<Object?>>.empty(),
+        returnValueForMissingStub:
+            _i5.Stream<_i10.DocumentSnapshot<Object?>>.empty(),
+      ) as _i5.Stream<_i10.DocumentSnapshot<Object?>>);
 }
