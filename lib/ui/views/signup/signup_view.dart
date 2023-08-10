@@ -12,12 +12,15 @@ import 'package:stacked/stacked_annotations.dart';
 import 'signup_viewmodel.dart';
 import 'package:smartnote/ui/views/signup/signup_view.form.dart';
 
-@FormView(fields: [
-  FormTextField(name: 'email', validator: TextValidators.validateEmail),
-  FormTextField(name: 'password', validator: TextValidators.validatePassword),
-  FormTextField(
-      name: 'displayName', validator: TextValidators.validateDisplayName)
-])
+@FormView(
+  fields: [
+    FormTextField(name: 'email', validator: TextValidators.validateEmail),
+    FormTextField(name: 'password', validator: TextValidators.validatePassword),
+    FormTextField(
+        name: 'displayName', validator: TextValidators.validateDisplayName)
+  ],
+  autoTextFieldValidation: false,
+)
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
   const SignupView({Key? key}) : super(key: key);
 

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/text_validators.dart';
 import 'package:stacked/stacked.dart';
 
-const bool _autoTextFieldValidation = true;
+const bool _autoTextFieldValidation = false;
 
 const String EmailValueKey = 'email';
 const String PasswordValueKey = 'password';

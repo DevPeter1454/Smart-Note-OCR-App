@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smartnote/ui/views/home/home_view.dart';
 import 'package:smartnote/ui/views/login/login_view.dart';
-import 'package:smartnote/ui/views/signup/signup_view.dart';
+import 'package:smartnote/ui/views/notes/notes_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';
@@ -68,9 +69,9 @@ class StartupView extends StatelessWidget {
     return ViewModelBuilder<StartupViewModel>.reactive(
       builder: (context, viewModel, child) {
         if (viewModel.data != null) {
-          return const LoginView();
+          return const HomeView();
         }
-        return const SignupView();
+        return const LoginView();
       },
       viewModelBuilder: () => StartupViewModel(),
     );

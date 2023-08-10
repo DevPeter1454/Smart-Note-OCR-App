@@ -141,11 +141,8 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i10.AddNoteView: (data) {
-      final args = data.getArgs<AddNoteViewArguments>(
-        orElse: () => const AddNoteViewArguments(),
-      );
       return _i11.MaterialPageRoute<dynamic>(
-        builder: (context) => _i10.AddNoteView(key: args.key),
+        builder: (context) => const _i10.AddNoteView(),
         settings: data,
       );
     },
@@ -155,28 +152,6 @@ class StackedRouter extends _i1.RouterBase {
   List<_i1.RouteDef> get routes => _routes;
   @override
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
-}
-
-class AddNoteViewArguments {
-  const AddNoteViewArguments({this.key});
-
-  final _i11.Key? key;
-
-  @override
-  String toString() {
-    return '{"key": "$key"}';
-  }
-
-  @override
-  bool operator ==(covariant AddNoteViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.key == key;
-  }
-
-  @override
-  int get hashCode {
-    return key.hashCode;
-  }
 }
 
 extension NavigatorStateExtension on _i12.NavigationService {
@@ -292,16 +267,14 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToAddNoteView({
-    _i11.Key? key,
+  Future<dynamic> navigateToAddNoteView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return navigateTo<dynamic>(Routes.addNoteView,
-        arguments: AddNoteViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -420,16 +393,14 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithAddNoteView({
-    _i11.Key? key,
+  Future<dynamic> replaceWithAddNoteView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return replaceWith<dynamic>(Routes.addNoteView,
-        arguments: AddNoteViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

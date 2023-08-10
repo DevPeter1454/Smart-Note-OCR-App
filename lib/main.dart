@@ -1,5 +1,6 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smartnote/app/app.bottomsheets.dart';
 import 'package:smartnote/app/app.dialogs.dart';
 import 'package:smartnote/app/app.locator.dart';
@@ -44,8 +45,6 @@ class MainApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          // primarySwatch:  Color(0xFF0D121D),
-
           colorScheme: ColorScheme.fromSwatch(
             primarySwatch: MaterialColor(
               0xFF0D121D,
@@ -54,117 +53,59 @@ class MainApp extends StatelessWidget {
           ).copyWith(
             secondary: const Color(0xFF0D121D),
           ),
-          textTheme: const TextTheme(
-            headlineSmall: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
-              fontSize: 24,
+          textTheme: TextTheme(
+            headlineSmall: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
+              fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
-            headlineMedium: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            headlineMedium: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
-            headlineLarge: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            headlineLarge: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
-            bodyLarge: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            bodyLarge: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 16,
               fontWeight: FontWeight.normal,
             ),
-            bodyMedium: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            bodyMedium: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 14,
               fontWeight: FontWeight.normal,
             ),
-            titleMedium: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            titleMedium: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
-            titleSmall: TextStyle(
-              fontFamily: 'Roboto',
+            titleSmall: GoogleFonts.lato(
               color: Colors.white,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            labelLarge: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            labelLarge: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            bodySmall: TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0xFF0D121D),
+            bodySmall: GoogleFonts.lato(
+              color: const Color(0xFF0D121D),
               fontSize: 12,
               fontWeight: FontWeight.normal,
             ),
-            labelSmall: TextStyle(
+            labelSmall: const TextStyle(
               fontFamily: 'Roboto',
               color: Color(0xFF0D121D),
               fontSize: 10,
               fontWeight: FontWeight.normal,
             ),
           )),
-      routes: {
-        // '/login-view': (context) {
-        //   return SignInScreen();
-        // }
-        '/login': (context) {
-          return SignInScreen(
-            actions: [
-              AuthStateChangeAction<UserCreated>((context, state) {
-                if (!state.credential.user!.emailVerified) {
-                  final snackbarService = locator<SnackbarService>();
-                  snackbarService.showSnackbar(
-                    message: 'Please verify your email address',
-                    duration: const Duration(seconds: 5),
-                  );
-                  Navigator.pushNamed(context, '/verify-email');
-                } else {
-                  final snackbarService = locator<SnackbarService>();
-                  snackbarService.showSnackbar(
-                    message: 'Email verified',
-                    duration: const Duration(seconds: 5),
-                  );
-                  // Navigator.pushReplacementNamed(context, '/profile');
-                }
-              }),
-            ],
-          );
-        },
-        '/verify-email': (context) {
-          return EmailVerificationScreen(
-            // actionCodeSettings: ActionCodeSettings(
-            //   url: 'https://smart-notes-5682c.firebaseapp.com/__/auth/handler',
-            //   handleCodeInApp: true,
-            //   // iOSBundleId: 'com.smartnote',
-            //   androidPackageName: 'com.smartnote',
-            //   androidInstallApp: true,
-            //   androidMinimumVersion: '16',
-            // ),
-            actions: [
-              EmailVerifiedAction(() {
-                final snackbarService = locator<SnackbarService>();
-                snackbarService.showSnackbar(
-                  message: 'Email verified',
-                  duration: const Duration(seconds: 5),
-                );
-              })
-            ],
-          );
-        }
-      },
     );
   }
 }

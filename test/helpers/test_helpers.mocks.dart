@@ -852,14 +852,21 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i5.Future<void> addNote(String? content) => (super.noSuchMethod(
+  _i5.Future<String> addNote(
+    List<dynamic>? content,
+    String? plainText,
+  ) =>
+      (super.noSuchMethod(
         Invocation.method(
           #addNote,
-          [content],
+          [
+            content,
+            plainText,
+          ],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i5.Future<String>.value(''),
+        returnValueForMissingStub: _i5.Future<String>.value(''),
+      ) as _i5.Future<String>);
   @override
   _i5.Future<void> updateNote({
     required String? content,

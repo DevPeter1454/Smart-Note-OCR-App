@@ -5,6 +5,7 @@ import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/app/app.router.dart';
 import 'package:smartnote/services/authentication_service.dart';
 import 'package:smartnote/services/firestore_service.dart';
+import 'package:smartnote/ui/common/text_validators.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:smartnote/ui/views/signup/signup_view.form.dart';
@@ -15,9 +16,6 @@ class SignupViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _firestoreService = locator<FirestoreService>();
   final log = getLogger('SignupViewModel');
-
-  @override
-  void setFormStatus() {}
 
   Future<void> createAccount() async {
     setBusy(true);
@@ -54,5 +52,15 @@ class SignupViewModel extends FormViewModel {
     await _navigationService.replaceWith(Routes.loginView,
         transition: (context, animation, secondaryAnimation, child) =>
             ScaleTransition(scale: animation, child: child));
+  }
+
+  @override
+  void setFormStatus() {
+    setEmailValidationMessage(TextValidators.validateEmail(emailValue));
+    setPasswordValidationMessage(
+        TextValidators.validatePassword(passwordValue));
+    setDisplayNameValidationMessage(TextValidators.validateDisplayName(
+      displayNameValue,
+    ));
   }
 }
