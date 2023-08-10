@@ -6,6 +6,7 @@ import 'package:smartnote/ui/widgets/common/loader/loader.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'add_note_viewmodel.dart';
+import 'package:chips_choice/chips_choice.dart';
 
 class AddNoteView extends StatelessWidget {
   const AddNoteView({super.key});
@@ -93,6 +94,35 @@ class AddNoteView extends StatelessWidget {
                               placeholder: 'Start typing here...',
                             ),
                           ),
+                          SizedBox(
+                            height: 60,
+                            child: ChipsChoice<int>.single(
+                                choiceStyle: C2ChipStyle.filled(
+                                  selectedStyle: C2ChipStyle(
+                                    backgroundColor:
+                                        viewModel.optionColors[viewModel.tag],
+                                    backgroundOpacity: 0.25,
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(25),
+                                    ),
+                                    height: 30,
+                                  ),
+                                ),
+                                value: viewModel.tag,
+                                choiceItems: C2Choice.listFrom<int, String>(
+                                  source: viewModel.options,
+                                  value: (i, v) => i,
+                                  label: (i, v) => v,
+                                  avatarText: (index, item) => Icon(
+                                    viewModel.optionIcons[index],
+                                    color: viewModel.optionColors[index],
+                                    size: 16,
+                                  ),
+                                ),
+                                // choiceStyle: C2ChipStyle(),
+                                onChanged: (val) =>
+                                    viewModel.setSelectedCategory(val)),
+                          )
                         ],
                       ),
                       if (viewModel.isBusy) const Loader()

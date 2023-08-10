@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/views/home/home_view.dart';
 import 'package:smartnote/ui/views/login/login_view.dart';
-import 'package:smartnote/ui/views/notes/notes_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'startup_viewmodel.dart';

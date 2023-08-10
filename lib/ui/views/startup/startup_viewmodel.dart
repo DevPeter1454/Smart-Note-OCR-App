@@ -3,7 +3,6 @@ import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/services/authentication_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:smartnote/app/app.locator.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class StartupViewModel extends StreamViewModel {
   // final _navigationService = locator<NavigationService>();

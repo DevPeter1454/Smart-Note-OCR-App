@@ -38,7 +38,8 @@ class FirestoreService {
         .update({'email': email});
   }
 
-  Future<String> addNote(List<dynamic> content, String plainText) async {
+  Future<String> addNote(
+      List<dynamic> content, String plainText, String category) async {
     final response = await _firebaseFirestore
         .collection('users')
         .doc(currentUser!.uid)
@@ -46,6 +47,7 @@ class FirestoreService {
         .add({
       'content': content,
       'plainText': plainText,
+      'category': category,
       'createdAt': FieldValue.serverTimestamp(),
     });
     log.d(response.id);

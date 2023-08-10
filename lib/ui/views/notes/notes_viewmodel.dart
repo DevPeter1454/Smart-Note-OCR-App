@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/app/app.router.dart';
@@ -17,18 +18,39 @@ class NotesViewModel extends StreamViewModel {
   }
 
   List<NoteModel> notes = [];
-  // dynamic get notes => data;
-
-  // List<NoteModel> get notes => data.docs
-  //     .forEach((doc) => NoteModel.fromMap(doc.data() as Map<String, dynamic>))
-  //     .toList();
 
   dynamic convertDocsToNote(List<dynamic> docs) {
     for (var doc in docs) {
-      notes.add(NoteModel.fromMap(doc.data() as Map<String, dynamic>));
+      notes.add(NoteModel(
+        plainText: doc.data()['plainText'],
+        content: doc.data()['content'],
+        category: doc.data()['category'],
+        id: doc.id,
+      ));
     }
 
     return notes;
+  }
+
+  dynamic getCategoryColor(String category) {
+    switch (category) {
+      case 'Work':
+        return const Color(0xFF64B5F6).withOpacity(0.2);
+      case 'Personal':
+        return const Color(0xFF81C784).withOpacity(0.2);
+      case 'Shopping':
+        return const Color(0xFFFFD54F).withOpacity(0.2);
+      case 'School':
+        return const Color(0xFFFFAB91).withOpacity(0.2);
+      case 'Ideas':
+        return const Color(0xFFFFCC80).withOpacity(0.2);
+      case 'Travel':
+        return const Color(0xFFE57373).withOpacity(0.2);
+      case 'Health':
+        return const Color(0xFF4DB6AC).withOpacity(0.2);
+      case 'Others':
+        return const Color(0xFFAED581).withOpacity(0.2);
+    }
   }
 
   @override
@@ -36,7 +58,7 @@ class NotesViewModel extends StreamViewModel {
   @override
   void onData(data) {
     super.onData(data);
-    // log.i(data.docs.first.data());
+    log.i(data.docs.first.id);
     // log.d(convertDocsToNote(data.docs));
     // Future.delayed(const Duration(seconds: 4), () {
     //   // notes = convertDocsToNote(data.docs);

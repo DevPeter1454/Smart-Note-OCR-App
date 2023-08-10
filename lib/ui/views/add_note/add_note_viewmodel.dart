@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:smartnote/app/app.logger.dart';
@@ -12,6 +13,51 @@ class AddNoteViewModel extends BaseViewModel {
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();
   final log = getLogger('AddNoteViewModel');
+
+  int _tag = 1;
+  int get tag => _tag;
+
+  String _currentCategory = 'Work';
+  String get currentCategory => _currentCategory;
+  List<String> options = [
+    'Work',
+    'Personal',
+    'Shopping',
+    'School',
+    'Ideas',
+    'Travel',
+    'Health',
+    'Others'
+  ];
+
+  List<IconData> optionIcons = [
+    Icons.work,
+    Icons.person,
+    Icons.shopping_cart,
+    Icons.school,
+    Icons.lightbulb,
+    Icons.flight,
+    Icons.favorite,
+    Icons.more_horiz,
+  ];
+
+  List<Color> optionColors = [
+    const Color(0xFF64B5F6),
+    const Color(0xFF81C784),
+    const Color(0xFFFFD54F),
+    const Color(0xFFFFAB91),
+    const Color(0xFFFFCC80),
+    const Color(0xFFE57373),
+    const Color(0xFF4DB6AC),
+    const Color(0xFFAED581),
+  ];
+
+  void setSelectedCategory(int index) {
+    _tag = index;
+    _currentCategory = options[index];
+    notifyListeners();
+  }
+
   void pop() {
     _navigationService.back();
   }
@@ -31,7 +77,8 @@ class AddNoteViewModel extends BaseViewModel {
     try {
       final response = await _firestoreService.addNote(
           _controller.document.toDelta().toJson(),
-          _controller.document.toPlainText());
+          _controller.document.toPlainText(),
+          _currentCategory);
       if (response.isNotEmpty) {
         _snackbarService.showSnackbar(
             message: 'Note added successfully',

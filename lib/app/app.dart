@@ -17,6 +17,7 @@ import 'package:smartnote/ui/views/notes/notes_view.dart';
 import 'package:smartnote/ui/views/profile/profile_view.dart';
 import 'package:smartnote/ui/views/chats/chats_view.dart';
 import 'package:smartnote/ui/views/add_note/add_note_view.dart';
+import 'package:smartnote/services/notes_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -39,6 +40,7 @@ import 'package:smartnote/ui/views/add_note/add_note_view.dart';
     LazySingleton(classType: AuthenticationService),
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: FirestoreService),
+    LazySingleton(classType: NotesService),
 // @stacked-service
   ],
   bottomsheets: [

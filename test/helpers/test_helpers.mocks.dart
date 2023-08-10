@@ -13,6 +13,7 @@ import 'package:logger/src/logger.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:smartnote/services/authentication_service.dart' as _i7;
 import 'package:smartnote/services/firestore_service.dart' as _i9;
+import 'package:smartnote/services/notes_service.dart' as _i11;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 
 // ignore_for_file: type=lint
@@ -756,45 +757,6 @@ class MockAuthenticationService extends _i1.Mock
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
-  @override
-  _i5.Future<void> createNewUser({
-    required String? email,
-    required String? displayName,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #createNewUser,
-          [],
-          {
-            #email: email,
-            #displayName: displayName,
-          },
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-  @override
-  _i5.Future<void> updateDisplayName({required String? displayName}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #updateDisplayName,
-          [],
-          {#displayName: displayName},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-  @override
-  _i5.Future<void> updateEmailInDB({required String? email}) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #updateEmailInDB,
-          [],
-          {#email: email},
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [FirestoreService].
@@ -855,6 +817,7 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
   _i5.Future<String> addNote(
     List<dynamic>? content,
     String? plainText,
+    String? category,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -862,6 +825,7 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
           [
             content,
             plainText,
+            category,
           ],
         ),
         returnValue: _i5.Future<String>.value(''),
@@ -918,3 +882,8 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
             _i5.Stream<_i10.DocumentSnapshot<Object?>>.empty(),
       ) as _i5.Stream<_i10.DocumentSnapshot<Object?>>);
 }
+
+/// A class which mocks [NotesService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNotesService extends _i1.Mock implements _i11.NotesService {}

@@ -54,47 +54,47 @@ class MainApp extends StatelessWidget {
             secondary: const Color(0xFF0D121D),
           ),
           textTheme: TextTheme(
-            headlineSmall: GoogleFonts.lato(
+            headlineSmall: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
-            headlineMedium: GoogleFonts.lato(
+            headlineMedium: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
-            headlineLarge: GoogleFonts.lato(
+            headlineLarge: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
-            bodyLarge: GoogleFonts.lato(
+            bodyLarge: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 16,
               fontWeight: FontWeight.normal,
             ),
-            bodyMedium: GoogleFonts.lato(
+            bodyMedium: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 14,
               fontWeight: FontWeight.normal,
             ),
-            titleMedium: GoogleFonts.lato(
+            titleMedium: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
-            titleSmall: GoogleFonts.lato(
+            titleSmall: GoogleFonts.spaceMono(
               color: Colors.white,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            labelLarge: GoogleFonts.lato(
+            labelLarge: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
-            bodySmall: GoogleFonts.lato(
+            bodySmall: GoogleFonts.spaceMono(
               color: const Color(0xFF0D121D),
               fontSize: 12,
               fontWeight: FontWeight.normal,
