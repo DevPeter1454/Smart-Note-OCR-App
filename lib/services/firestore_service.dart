@@ -55,13 +55,15 @@ class FirestoreService {
   }
 
   Future<void> updateNote(
-      {required String content, required String noteId}) async {
+      {required List<dynamic> content, required String noteId, required String plainText , required String category}) async {
     await _firebaseFirestore
         .collection('users')
         .doc(currentUser!.uid)
         .collection('notes')
         .doc(noteId)
         .update({
+      'plainText': plainText,
+      'category': category,
       'content': content,
       'updatedAt': FieldValue.serverTimestamp(),
     });

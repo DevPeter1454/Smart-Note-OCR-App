@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/app_colors.dart';
+import 'package:smartnote/ui/common/ui_helpers.dart';
 import 'package:smartnote/ui/widgets/common/loader/loader.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -18,6 +19,7 @@ class NotesView extends StatelessWidget {
         return Scaffold(
             // backgroundColor: Theme.of(context).colorScheme.background,
             body: Container(
+              height: screenHeight(context),
               decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('assets/images/background.png'),
@@ -48,7 +50,7 @@ class NotesView extends StatelessWidget {
                             viewModel.error.toString(),
                             style: const TextStyle(color: Colors.red),
                           ),
-                        if (viewModel.data == null)
+                        if (viewModel.data == null && viewModel.dataReady)
                           const Center(child: Text('No notes added yet')),
                         if (viewModel.dataReady)
                           MasonryGridView.builder(
@@ -58,25 +60,31 @@ class NotesView extends StatelessWidget {
                                 const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2),
                             itemBuilder: (context, index) {
-                              return Card(
-                                child: ListTile(
-                                  tileColor: viewModel.getCategoryColor(
-                                      viewModel.data.docs[index]['category']),
-                                  title: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      viewModel.data.docs[index]['plainText'],
-                                      maxLines: 10,
-                                      overflow: TextOverflow.ellipsis,
+                              return GestureDetector(
+                                child: Card(
+                                  child: ListTile(
+                                    onTap: () {
+                                      viewModel.navigateToEditNoteView(
+                                          viewModel.data.docs[index]);
+                                    },
+                                    tileColor: viewModel.getCategoryColor(
+                                        viewModel.data.docs[index]['category']),
+                                    title: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        viewModel.data.docs[index]['plainText'],
+                                        maxLines: 10,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ),
+                                    titleTextStyle:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                    subtitle: Text(
+                                        'Category:${viewModel.data.docs[index]['category']}'),
+                                    subtitleTextStyle:
+                                        Theme.of(context).textTheme.labelSmall,
+                                    // onTap: () {},
                                   ),
-                                  titleTextStyle:
-                                      Theme.of(context).textTheme.bodyLarge,
-                                  subtitle: Text(
-                                      'Category:${viewModel.data.docs[index]['category']}'),
-                                  subtitleTextStyle:
-                                      Theme.of(context).textTheme.labelSmall,
-                                  onTap: () {},
                                 ),
                               );
                             },

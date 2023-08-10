@@ -5,6 +5,7 @@ import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/app/app.router.dart';
 import 'package:smartnote/models/note_model.dart';
 import 'package:smartnote/services/firestore_service.dart';
+import 'package:smartnote/services/notes_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -12,6 +13,7 @@ class NotesViewModel extends StreamViewModel {
   final _navigationService = locator<NavigationService>();
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();
+  final _notesService = locator<NotesService>();
   final log = getLogger('NotesViewModel');
   void navigateToCreateNoteView() {
     _navigationService.navigateTo(Routes.addNoteView);
@@ -21,6 +23,7 @@ class NotesViewModel extends StreamViewModel {
 
   dynamic convertDocsToNote(List<dynamic> docs) {
     for (var doc in docs) {
+      log.d(doc.id);
       notes.add(NoteModel(
         plainText: doc.data()['plainText'],
         content: doc.data()['content'],
@@ -30,6 +33,18 @@ class NotesViewModel extends StreamViewModel {
     }
 
     return notes;
+  }
+
+  void navigateToEditNoteView(dynamic note) {
+    log.d(note.data()['content']);
+
+    _notesService.clearCurrentNote();
+    _notesService.setCurrentNote(NoteModel(
+        plainText: note.data()['plainText'],
+        content: note.data()['content'],
+        category: note.data()['category'],
+        id: note.id));
+    _navigationService.navigateTo(Routes.addNoteView);
   }
 
   dynamic getCategoryColor(String category) {
@@ -58,12 +73,8 @@ class NotesViewModel extends StreamViewModel {
   @override
   void onData(data) {
     super.onData(data);
-    log.i(data.docs.first.id);
-    // log.d(convertDocsToNote(data.docs));
-    // Future.delayed(const Duration(seconds: 4), () {
-    //   // notes = convertDocsToNote(data.docs);
-    //   log.i(convertDocsToNote(data.docs));
-    // });
+    // log.i(data.docs.first.id);
+    _notesService.setNotesList(convertDocsToNote(data.docs));
     if (data == null) {
       _snackbarService.showSnackbar(message: 'No notes added yet');
     }

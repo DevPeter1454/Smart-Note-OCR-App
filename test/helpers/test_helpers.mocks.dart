@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:flutter/material.dart' as _i4;
 import 'package:logger/src/logger.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:smartnote/models/note_model.dart' as _i12;
 import 'package:smartnote/services/authentication_service.dart' as _i7;
 import 'package:smartnote/services/firestore_service.dart' as _i9;
 import 'package:smartnote/services/notes_service.dart' as _i11;
@@ -833,8 +834,10 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
       ) as _i5.Future<String>);
   @override
   _i5.Future<void> updateNote({
-    required String? content,
+    required List<dynamic>? content,
     required String? noteId,
+    required String? plainText,
+    required String? category,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -843,6 +846,8 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
           {
             #content: content,
             #noteId: noteId,
+            #plainText: plainText,
+            #category: category,
           },
         ),
         returnValue: _i5.Future<void>.value(),
@@ -886,4 +891,35 @@ class MockFirestoreService extends _i1.Mock implements _i9.FirestoreService {
 /// A class which mocks [NotesService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNotesService extends _i1.Mock implements _i11.NotesService {}
+class MockNotesService extends _i1.Mock implements _i11.NotesService {
+  @override
+  List<_i12.NoteModel> get notesList => (super.noSuchMethod(
+        Invocation.getter(#notesList),
+        returnValue: <_i12.NoteModel>[],
+        returnValueForMissingStub: <_i12.NoteModel>[],
+      ) as List<_i12.NoteModel>);
+  @override
+  void setNotesList(List<_i12.NoteModel>? notesList) => super.noSuchMethod(
+        Invocation.method(
+          #setNotesList,
+          [notesList],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void setCurrentNote(_i12.NoteModel? currentNote) => super.noSuchMethod(
+        Invocation.method(
+          #setCurrentNote,
+          [currentNote],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void clearCurrentNote() => super.noSuchMethod(
+        Invocation.method(
+          #clearCurrentNote,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}

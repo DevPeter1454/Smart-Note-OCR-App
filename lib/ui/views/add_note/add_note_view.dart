@@ -14,6 +14,7 @@ class AddNoteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
+        onViewModelReady: (viewModel) => viewModel.init(),
         builder: (context, viewModel, child) {
           return GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
@@ -41,7 +42,7 @@ class AddNoteView extends StatelessWidget {
                         ),
                         onPressed: () {
                           FocusScope.of(context).unfocus();
-                          viewModel.addNote();
+                          viewModel.saveNote();
                         },
                       ),
                     ],
