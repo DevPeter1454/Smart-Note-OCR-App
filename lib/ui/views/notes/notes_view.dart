@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/app_colors.dart';
 import 'package:smartnote/ui/common/ui_helpers.dart';
+import 'package:smartnote/ui/views/focused_menu/focused_menu_handler.dart';
 import 'package:smartnote/ui/widgets/common/loader/loader.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -60,30 +61,68 @@ class NotesView extends StatelessWidget {
                                 const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2),
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: Card(
-                                  child: ListTile(
-                                    onTap: () {
-                                      viewModel.navigateToEditNoteView(
-                                          viewModel.data.docs[index]);
-                                    },
-                                    tileColor: viewModel.getCategoryColor(
-                                        viewModel.data.docs[index]['category']),
-                                    title: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        viewModel.data.docs[index]['plainText'],
-                                        maxLines: 10,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                              return FocusedMenuHandler(
+                                menuContent: Column(
+                                  children: [
+                                    ListTile(
+                                      onTap: () {
+                                        viewModel.copyText(viewModel
+                                            .data.docs[index]['plainText']);
+                                       
+                                      },
+                                      title: const Text('Copy'),
+                                      trailing: const Icon(Icons.copy),
                                     ),
-                                    titleTextStyle:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                    subtitle: Text(
-                                        'Category:${viewModel.data.docs[index]['category']}'),
-                                    subtitleTextStyle:
-                                        Theme.of(context).textTheme.labelSmall,
-                                    // onTap: () {},
+                                    const Divider(
+                                        color: Colors.blueGrey, height: 5.0),
+                                    const ListTile(
+                                      title: Text('Delete'),
+                                      trailing: Icon(Icons.delete_forever),
+                                    ),
+                                    const Divider(
+                                        color: Colors.blueGrey, height: 5.0),
+                                    const ListTile(
+                                      title: Text('Share'),
+                                      trailing: Icon(Icons.share),
+                                    ),
+                                    const Divider(
+                                        color: Colors.blueGrey, height: 5.0),
+                                    const ListTile(
+                                      title: Text('Edit'),
+                                      trailing: Icon(Icons.edit),
+                                    ),
+                                    const Divider(
+                                        color: Colors.blueGrey, height: 5.0),
+                                  ],
+                                ),
+                                child: GestureDetector(
+                                  child: Card(
+                                    child: ListTile(
+                                      onTap: () {
+                                        viewModel.navigateToEditNoteView(
+                                            viewModel.data.docs[index]);
+                                      },
+                                      tileColor: viewModel.getCategoryColor(
+                                          viewModel.data.docs[index]
+                                              ['category']),
+                                      title: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          viewModel.data.docs[index]
+                                              ['plainText'],
+                                          maxLines: 10,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      titleTextStyle:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      subtitle: Text(
+                                          'Category:${viewModel.data.docs[index]['category']}'),
+                                      subtitleTextStyle: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall,
+                                      // onTap: () {},
+                                    ),
                                   ),
                                 ),
                               );

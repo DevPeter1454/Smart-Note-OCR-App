@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:smartnote/app/app.locator.dart';
@@ -66,6 +67,15 @@ class NotesViewModel extends StreamViewModel {
       case 'Others':
         return const Color(0xFFAED581).withOpacity(0.2);
     }
+  }
+
+  void copyText(String text) {
+    FlutterClipboard.copy(text).then((value) {
+      _snackbarService.showSnackbar(
+          message: "Text successfully copied to your clipboard",
+          duration: const Duration(seconds: 2));
+    });
+    _navigationService.back();
   }
 
   @override

@@ -18,6 +18,7 @@ import 'package:smartnote/ui/views/profile/profile_view.dart';
 import 'package:smartnote/ui/views/chats/chats_view.dart';
 import 'package:smartnote/ui/views/add_note/add_note_view.dart';
 import 'package:smartnote/services/notes_service.dart';
+
 // @stacked-import
 
 @StackedApp(
