@@ -78,6 +78,33 @@ class NotesViewModel extends StreamViewModel {
     _navigationService.back();
   }
 
+  void deleteNote(String noteId) async {
+    _navigationService.back();
+
+    _snackbarService.showSnackbar(
+      message: 'Are you sure you want to delete this note?',
+      title: 'Delete',
+      duration: const Duration(seconds: 2),
+      mainButtonTitle: 'Yes',
+      onMainButtonTapped: () => deleteNoteFinally(noteId),
+    );
+  }
+
+  void deleteNoteFinally(String noteId) async {
+    setBusy(true);
+    try {
+      await _firestoreService.deleteNote(
+        noteId: noteId,
+      );
+      _snackbarService.showSnackbar(
+          message: 'Note deleted successfully',
+          duration: const Duration(seconds: 2));
+    } on FirebaseException catch (e) {
+      _snackbarService.showSnackbar(message: e.message.toString());
+    }
+    setBusy(false);
+  }
+
   @override
   Stream<QuerySnapshot> get stream => _firestoreService.getNotes();
   @override

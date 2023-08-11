@@ -68,16 +68,20 @@ class NotesView extends StatelessWidget {
                                       onTap: () {
                                         viewModel.copyText(viewModel
                                             .data.docs[index]['plainText']);
-                                       
                                       },
                                       title: const Text('Copy'),
                                       trailing: const Icon(Icons.copy),
                                     ),
                                     const Divider(
                                         color: Colors.blueGrey, height: 5.0),
-                                    const ListTile(
-                                      title: Text('Delete'),
-                                      trailing: Icon(Icons.delete_forever),
+                                    ListTile(
+                                      onTap: () {
+                                        viewModel.deleteNote(
+                                            viewModel.data.docs[index].id);
+                                      },
+                                      title: const Text('Delete'),
+                                      trailing:
+                                          const Icon(Icons.delete_forever),
                                     ),
                                     const Divider(
                                         color: Colors.blueGrey, height: 5.0),
