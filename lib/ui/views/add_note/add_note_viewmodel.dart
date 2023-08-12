@@ -19,6 +19,9 @@ class AddNoteViewModel extends BaseViewModel {
 
   // void getCurrentNote
 
+  String _title = 'Add Note';
+  String get title => _title;
+
   int _tag = 1;
   int get tag => _tag;
 
@@ -88,6 +91,8 @@ class AddNoteViewModel extends BaseViewModel {
       _controller.document = Document.fromJson(currentNote!.content);
       _currentCategory = currentNote.category;
       _tag = options.indexOf(currentNote.category);
+      _title = 'Edit Note';
+      notifyListeners();
     }
   }
 

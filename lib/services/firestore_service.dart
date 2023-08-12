@@ -11,6 +11,8 @@ class FirestoreService {
 
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
+  FirebaseFirestore get firestoreInstance => _firebaseFirestore;
+
   final log = getLogger("FirestoreService");
 
   Future<void> createNewUser({
@@ -24,6 +26,22 @@ class FirestoreService {
     });
   }
 
+  Future<dynamic> getUserDetails() async {
+    final DocumentSnapshot documentSnapshot =
+        await _firebaseFirestore.collection('users').doc(currentUser!.uid).get();
+    log.d(documentSnapshot.data());
+    return documentSnapshot.data();
+  }
+
+  Future<void> updatePhotoURL({required String photoURL}) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .update({'photoURL': photoURL});
+  }
+
+  
+
   Future<void> updateDisplayName({required String displayName}) async {
     await _firebaseFirestore
         .collection('users')
@@ -36,6 +54,13 @@ class FirestoreService {
         .collection('users')
         .doc(currentUser!.uid)
         .update({'email': email});
+  }
+
+  Future<void> updatePhotoUrl({required String url})async{
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .update({'photoURL': url});
   }
 
   Future<String> addNote(

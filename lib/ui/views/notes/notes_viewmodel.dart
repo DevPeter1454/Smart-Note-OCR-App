@@ -7,17 +7,33 @@ import 'package:smartnote/app/app.router.dart';
 import 'package:smartnote/models/note_model.dart';
 import 'package:smartnote/services/firestore_service.dart';
 import 'package:smartnote/services/notes_service.dart';
+import 'package:smartnote/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NotesViewModel extends StreamViewModel {
   final _navigationService = locator<NavigationService>();
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();
   final _notesService = locator<NotesService>();
+  final _userService = locator<UserService>();
   final log = getLogger('NotesViewModel');
   void navigateToCreateNoteView() {
     _navigationService.navigateTo(Routes.addNoteView);
+  }
+
+  String get name => _userService.userData!.displayName.split(' ')[0];
+  void init() async {
+    setBusy(true);
+    try {
+      final response = await _firestoreService.getUserDetails();
+      _userService.setUserModel(response);
+      log.d(_userService.userData!.email);
+    } catch (e) {
+      _snackbarService.showSnackbar(message: e.toString());
+    }
+    setBusy(false);
   }
 
   List<NoteModel> notes = [];
@@ -103,6 +119,11 @@ class NotesViewModel extends StreamViewModel {
       _snackbarService.showSnackbar(message: e.message.toString());
     }
     setBusy(false);
+  }
+
+  void shareContent(BuildContext context, String text) {
+    _navigationService.back();
+    Share.share(text);
   }
 
   @override

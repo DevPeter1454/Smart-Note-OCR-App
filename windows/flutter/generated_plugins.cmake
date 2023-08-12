@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   desktop_webview_auth
   firebase_core
   pasteboard
+  share_plus
   url_launcher_windows
 )
 

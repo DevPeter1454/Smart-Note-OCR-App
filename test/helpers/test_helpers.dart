@@ -7,6 +7,7 @@ import 'package:smartnote/services/authentication_service.dart';
 import 'package:smartnote/services/firestore_service.dart';
 
 import 'package:smartnote/services/notes_service.dart';
+import 'package:smartnote/services/user_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -19,6 +20,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<AuthenticationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FirestoreService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<NotesService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<UserService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -30,6 +32,7 @@ void registerServices() {
   getAndRegisterFirestoreService();
 
   getAndRegisterNotesService();
+  getAndRegisterUserService();
 // @stacked-mock-register
 }
 
@@ -101,6 +104,13 @@ MockNotesService getAndRegisterNotesService() {
   _removeRegistrationIfExists<NotesService>();
   final service = MockNotesService();
   locator.registerSingleton<NotesService>(service);
+  return service;
+}
+
+MockUserService getAndRegisterUserService() {
+  _removeRegistrationIfExists<UserService>();
+  final service = MockUserService();
+  locator.registerSingleton<UserService>(service);
   return service;
 }
 // @stacked-mock-create

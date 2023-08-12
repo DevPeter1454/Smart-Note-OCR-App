@@ -29,9 +29,9 @@ class AddNoteView extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: CustomBackButton(onPressed: viewModel.pop),
                     ),
-                    title: const Text(
-                      'Add Note',
-                      style: TextStyle(color: Colors.black),
+                    title: Text(
+                      viewModel.title,
+                      style: const TextStyle(color: Colors.black),
                     ),
                     centerTitle: true,
                     actions: [
