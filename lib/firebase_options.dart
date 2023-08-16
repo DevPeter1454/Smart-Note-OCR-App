@@ -47,31 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDdyD1eCPCQNGAMXFfp-C7Wjv-Fkvcb7A4',
-    appId: '1:187372280063:web:87d6f1a71ad7f0908e54ca',
-    messagingSenderId: '187372280063',
-    projectId: 'smart-notes-5682c',
-    authDomain: 'smart-notes-5682c.firebaseapp.com',
-    storageBucket: 'smart-notes-5682c.appspot.com',
-    measurementId: 'G-0TTQ8DBVHR',
+    apiKey: 'AIzaSyCWlAgPH2N12jJUmk4Bx9KJfhb4c1rG9QQ',
+    appId: '1:549178272813:web:347ee66443feb5e96d1ca4',
+    messagingSenderId: '549178272813',
+    projectId: 'smartnotes-b5ddc',
+    authDomain: 'smartnotes-b5ddc.firebaseapp.com',
+    storageBucket: 'smartnotes-b5ddc.appspot.com',
+    measurementId: 'G-KE2X7JKD39',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA6B6cFtzPRFqvvQ-QLeXLm-2_VIzqlIRo',
-    appId: '1:187372280063:android:c66e471675b5f7928e54ca',
-    messagingSenderId: '187372280063',
-    projectId: 'smart-notes-5682c',
-    storageBucket: 'smart-notes-5682c.appspot.com',
+    apiKey: 'AIzaSyCVKCcec405a5o4-cJLn33vppMXUw1pXUc',
+    appId: '1:549178272813:android:afb76c82088ece6f6d1ca4',
+    messagingSenderId: '549178272813',
+    projectId: 'smartnotes-b5ddc',
+    storageBucket: 'smartnotes-b5ddc.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDaStP-vtqR_mYBBZMkXAH8JFB5ArBbWFM',
-    appId: '1:187372280063:ios:72bfeddb71ba47158e54ca',
-    messagingSenderId: '187372280063',
-    projectId: 'smart-notes-5682c',
-    storageBucket: 'smart-notes-5682c.appspot.com',
-    iosClientId:
-        '187372280063-gobuuje206go42vpm2q4vg1ta5pt4nff.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAiid9tcMxk-ibYPgj1w1JIiuL1L0HHsgM',
+    appId: '1:549178272813:ios:f591d9a4cbb8d3506d1ca4',
+    messagingSenderId: '549178272813',
+    projectId: 'smartnotes-b5ddc',
+    storageBucket: 'smartnotes-b5ddc.appspot.com',
+    iosClientId: '549178272813-6d6758j6c7kfh5vfjqhd6f5sml2htscp.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartnote',
   );
 }
