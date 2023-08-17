@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class AuthenticationService {
-  
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
@@ -56,6 +54,4 @@ class AuthenticationService {
   }) async {
     await _firebaseAuth.currentUser!.updatePassword(password);
   }
-
-  
 }

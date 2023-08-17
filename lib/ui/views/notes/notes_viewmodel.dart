@@ -13,18 +13,27 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:share_plus/share_plus.dart';
 
 class NotesViewModel extends StreamViewModel {
+
   final _navigationService = locator<NavigationService>();
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();
   final _notesService = locator<NotesService>();
   final _userService = locator<UserService>();
   final log = getLogger('NotesViewModel');
+
   void navigateToCreateNoteView() {
     _navigationService.navigateTo(Routes.addNoteView);
   }
 
+  void navigateToSelectImageVIew(){
+    _navigationService.navigateTo(Routes.selectImageView);
+  }
+
+  
+
   String get name => _userService.userData!.displayName.split(' ')[0];
   void init() async {
+    
     setBusy(true);
     try {
       final response = await _firestoreService.getUserDetails();

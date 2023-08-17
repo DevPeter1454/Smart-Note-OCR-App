@@ -108,7 +108,6 @@ class ProfileView extends StackedView<ProfileViewModel> with $ProfileView {
                         labelText: 'Password',
                       ),
                       verticalSpaceMedium,
-  
                     ],
                   ),
           ),

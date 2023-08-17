@@ -20,7 +20,7 @@ class FocusedMenuDetails extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     final maxMenuWidth = size.width * 0.70;
-    final menuHeight = size.height * 0.35;
+    final menuHeight = size.height * 0.45;
     final leftOffset = (childOffset.dx + maxMenuWidth) < size.width
         ? childOffset.dx
         : (childOffset.dx - maxMenuWidth + childSize.width);

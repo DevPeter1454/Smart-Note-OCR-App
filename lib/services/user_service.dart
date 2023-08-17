@@ -20,5 +20,4 @@ class UserService {
   void clearUserModel() {
     _model = null;
   }
-  
 }

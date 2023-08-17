@@ -27,8 +27,10 @@ class FirestoreService {
   }
 
   Future<dynamic> getUserDetails() async {
-    final DocumentSnapshot documentSnapshot =
-        await _firebaseFirestore.collection('users').doc(currentUser!.uid).get();
+    final DocumentSnapshot documentSnapshot = await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .get();
     log.d(documentSnapshot.data());
     return documentSnapshot.data();
   }
@@ -39,8 +41,6 @@ class FirestoreService {
         .doc(currentUser!.uid)
         .update({'photoURL': photoURL});
   }
-
-  
 
   Future<void> updateDisplayName({required String displayName}) async {
     await _firebaseFirestore
@@ -56,7 +56,7 @@ class FirestoreService {
         .update({'email': email});
   }
 
-  Future<void> updatePhotoUrl({required String url})async{
+  Future<void> updatePhotoUrl({required String url}) async {
     await _firebaseFirestore
         .collection('users')
         .doc(currentUser!.uid)

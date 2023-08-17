@@ -227,28 +227,32 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                                     ),
                                   ),
                                   verticalSpaceLarge,
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        ksDoNotHaveAnAccountText,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                      InkWell(
-                                        onTap:
-                                            viewModel.navigateToCreateAccount,
-                                        child: Text(
-                                          ksCreateAccountText,
+                                  Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          ksDoNotHaveAnAccountText,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyLarge!
-                                              .copyWith(color: kcTertiaryColor),
+                                              .bodyLarge,
                                         ),
-                                      )
-                                    ],
+                                        InkWell(
+                                          onTap:
+                                              viewModel.navigateToCreateAccount,
+                                          child: Text(
+                                            ksCreateAccountText,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge!
+                                                .copyWith(
+                                                    color: kcTertiaryColor),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),

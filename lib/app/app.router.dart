@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/views/add_note/add_note_view.dart' as _i10;
 import 'package:smartnote/ui/views/chats/chats_view.dart' as _i9;
@@ -13,11 +13,12 @@ import 'package:smartnote/ui/views/home/home_view.dart' as _i6;
 import 'package:smartnote/ui/views/login/login_view.dart' as _i3;
 import 'package:smartnote/ui/views/notes/notes_view.dart' as _i7;
 import 'package:smartnote/ui/views/profile/profile_view.dart' as _i8;
+import 'package:smartnote/ui/views/select_image/select_image_view.dart' as _i11;
 import 'package:smartnote/ui/views/signup/signup_view.dart' as _i4;
 import 'package:smartnote/ui/views/startup/startup_view.dart' as _i2;
 import 'package:smartnote/ui/views/verify_email/verify_email_view.dart' as _i5;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i12;
+import 'package:stacked_services/stacked_services.dart' as _i13;
 
 class Routes {
   static const startupView = '/startup-view';
@@ -38,6 +39,8 @@ class Routes {
 
   static const addNoteView = '/add-note-view';
 
+  static const selectImageView = '/select-image-view';
+
   static const all = <String>{
     startupView,
     loginView,
@@ -48,6 +51,7 @@ class Routes {
     profileView,
     chatsView,
     addNoteView,
+    selectImageView,
   };
 }
 
@@ -89,60 +93,70 @@ class StackedRouter extends _i1.RouterBase {
       Routes.addNoteView,
       page: _i10.AddNoteView,
     ),
+    _i1.RouteDef(
+      Routes.selectImageView,
+      page: _i11.SelectImageView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.StartupView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.StartupView(),
         settings: data,
       );
     },
     _i3.LoginView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.LoginView(),
         settings: data,
       );
     },
     _i4.SignupView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.SignupView(),
         settings: data,
       );
     },
     _i5.VerifyEmailView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.VerifyEmailView(),
         settings: data,
       );
     },
     _i6.HomeView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.HomeView(),
         settings: data,
       );
     },
     _i7.NotesView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.NotesView(),
         settings: data,
       );
     },
     _i8.ProfileView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.ProfileView(),
         settings: data,
       );
     },
     _i9.ChatsView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.ChatsView(),
         settings: data,
       );
     },
     _i10.AddNoteView: (data) {
-      return _i11.MaterialPageRoute<dynamic>(
+      return _i12.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.AddNoteView(),
+        settings: data,
+      );
+    },
+    _i11.SelectImageView: (data) {
+      return _i12.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.SelectImageView(),
         settings: data,
       );
     },
@@ -154,7 +168,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i12.NavigationService {
+extension NavigatorStateExtension on _i13.NavigationService {
   Future<dynamic> navigateToStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -281,6 +295,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToSelectImageView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.selectImageView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithStartupView([
     int? routerId,
     bool preventDuplicates = true,
@@ -401,6 +429,20 @@ extension NavigatorStateExtension on _i12.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.addNoteView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSelectImageView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.selectImageView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

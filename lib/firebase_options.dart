@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '549178272813',
     projectId: 'smartnotes-b5ddc',
     storageBucket: 'smartnotes-b5ddc.appspot.com',
-    iosClientId: '549178272813-6d6758j6c7kfh5vfjqhd6f5sml2htscp.apps.googleusercontent.com',
+    iosClientId:
+        '549178272813-6d6758j6c7kfh5vfjqhd6f5sml2htscp.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartnote',
   );
 }

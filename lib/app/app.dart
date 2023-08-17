@@ -20,6 +20,7 @@ import 'package:smartnote/ui/views/add_note/add_note_view.dart';
 import 'package:smartnote/services/notes_service.dart';
 
 import 'package:smartnote/services/user_service.dart';
+import 'package:smartnote/ui/views/select_image/select_image_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -33,6 +34,7 @@ import 'package:smartnote/services/user_service.dart';
     MaterialRoute(page: ProfileView),
     MaterialRoute(page: ChatsView),
     MaterialRoute(page: AddNoteView),
+    MaterialRoute(page: SelectImageView),
 // @stacked-route
   ],
   dependencies: [

@@ -56,6 +56,4 @@ class LoginViewModel extends FormViewModel {
         transition: (context, animation, secondaryAnimation, child) =>
             ScaleTransition(scale: animation, child: child));
   }
-
-  
 }

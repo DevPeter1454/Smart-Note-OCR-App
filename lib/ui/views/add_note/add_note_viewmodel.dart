@@ -85,6 +85,7 @@ class AddNoteViewModel extends BaseViewModel {
     // log.i(_noteService.currentNote!.content);
     if (_noteService.currentNote == null) {
       _controller.document = Document.fromDelta(Delta()..insert('\n'));
+    
     } else {
       NoteModel? currentNote = _noteService.currentNote;
       // log.d(currentNote!.id);

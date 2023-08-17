@@ -42,7 +42,7 @@ class ProfileViewModel extends FormViewModel {
   Future<void> uploadImage() async {
     setBusy(true);
     try {
-      final uploadTask = storageRef.child('images/$imageName').putFile(image);
+      final uploadTask = storageRef.child('user/avatar/$imageName').putFile(image);
       await uploadTask.whenComplete(() async {
         final downloadUrl = await uploadTask.snapshot.ref.getDownloadURL();
         await _firestoreService.updatePhotoUrl(url: downloadUrl);
