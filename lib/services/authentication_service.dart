@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smartnote/app/app.logger.dart';
 
 class AuthenticationService {
+  final log = getLogger('AuthenticationService');
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
@@ -23,6 +25,7 @@ class AuthenticationService {
 
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    // log.i(_firebaseAuth.currentUser!.uid);
   }
 
   Future<void> sendPasswordResetEmail({

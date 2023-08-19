@@ -24,6 +24,13 @@ class StartupViewModel extends StreamViewModel {
     // _navigationService.replaceWithHomeView();
     // _navigationService.replaceWith(Routes.loginView);
   }
+  @override
+  void onData(data){
+    // log.i('onData');
+    super.onData(data);
+    log.d('onData: ${data?.email}');
+
+  }
 
   @override
   Stream get stream => _authenticationService.currentStream;

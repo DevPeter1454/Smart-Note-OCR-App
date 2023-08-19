@@ -52,6 +52,7 @@ class ChatsView extends StatelessWidget {
                             if (viewModel.dataReady) {
                               return ListView.builder(
                                 shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   final data = viewModel.data.docs[index];
                                   ChatModel chatModel = ChatModel(

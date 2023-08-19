@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/app_colors.dart';
 import 'package:smartnote/ui/common/ui_helpers.dart';
 import 'package:smartnote/ui/views/profile/profile_view.form.dart';
+import 'package:smartnote/ui/widgets/common/custom_button/custom_button.dart';
 import 'package:smartnote/ui/widgets/common/custom_textfield/custom_textfield.dart';
 import 'package:smartnote/ui/widgets/common/loader/loader.dart';
 import 'package:stacked/stacked.dart';
@@ -108,6 +109,7 @@ class ProfileView extends StackedView<ProfileViewModel> with $ProfileView {
                         labelText: 'Password',
                       ),
                       verticalSpaceMedium,
+                      CustomButton(onPressed: viewModel.logout, backgroundColor: kcBackgroundColor, text: 'Log out', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white), size: Size(screenWidth(context), 50)),
                     ],
                   ),
           ),

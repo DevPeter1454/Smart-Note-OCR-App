@@ -3,6 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:smartnote/app/app.logger.dart';
+import 'package:smartnote/app/app.router.dart';
+import 'package:smartnote/services/authentication_service.dart';
 import 'package:smartnote/services/firestore_service.dart';
 import 'package:smartnote/services/user_service.dart';
 import 'package:stacked/stacked.dart';
@@ -12,7 +14,9 @@ import 'package:stacked_services/stacked_services.dart';
 class ProfileViewModel extends FormViewModel {
   final _userService = locator<UserService>();
   final _firestoreService = locator<FirestoreService>();
+  final _authenticationService = locator<AuthenticationService>();
   final _snackBarService = locator<SnackbarService>();
+  final _navigationService = locator<NavigationService>();
   final log = getLogger('ProfileViewModel');
   final storageRef = FirebaseStorage.instance.ref();
   late File image;
@@ -84,6 +88,13 @@ class ProfileViewModel extends FormViewModel {
     } else {
       return '${text.substring(0, maxLength)}...';
     }
+  }
+
+  void logout()async{
+    // _snackBarService
+    await _authenticationService.signOut();
+    _navigationService.clearStackAndShow(Routes.startupView);
+
   }
 
   @override

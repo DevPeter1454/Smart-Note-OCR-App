@@ -44,132 +44,137 @@ class NotesView extends StatelessWidget {
                 ),
                 child: viewModel.isBusy
                     ? const Loader()
-                    : SingleChildScrollView(
-                        // controller: scrollController,
-                        physics: const BouncingScrollPhysics(),
-                        child: SafeArea(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  DateTime.now().hour < 12
-                                      ? 'Good Morning ${viewModel.name} 👋'
-                                      : DateTime.now().hour < 17
-                                          ? 'Good Afternoon ${viewModel.name}👋'
-                                          : 'Good Evening ${viewModel.name} 👋',
-                                  style:
-                                      Theme.of(context).textTheme.headlineMedium,
-                                ),
-                                if (viewModel.isBusy) const Loader(),
-                                if (viewModel.hasError)
-                                  Text(
-                                    viewModel.error.toString(),
-                                    style: const TextStyle(color: Colors.red),
+                    : SafeArea(
+                      child: SingleChildScrollView(
+                          // controller: scrollController,
+                          physics: const BouncingScrollPhysics(),
+                          child: SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      DateTime.now().hour < 12
+                                          ? 'Good Morning, ${viewModel.name.split(' ').first} 👋'
+                                          : DateTime.now().hour < 17
+                                              ? 'Good Afternoon, ${viewModel.name.split(' ').first}👋'
+                                              : 'Good Evening, ${viewModel.name.split(' ').first} 👋',
+                                      style:
+                                          Theme.of(context).textTheme.headlineMedium,
+                                    ),
                                   ),
-                                if (viewModel.data == null && viewModel.dataReady)
-                                  const Center(child: Text('No notes added yet')),
-                                if (viewModel.dataReady)
-                                  MasonryGridView.builder(
-                                    controller: scrollController,
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2),
-                                    itemBuilder: (context, index) {
-                                      return FocusedMenuHandler(
-                                        menuContent: Column(
-                                          children: [
-                                            ListTile(
-                                              onTap: () {
-                                                viewModel.copyText(viewModel.data
-                                                    .docs[index]['plainText']);
-                                              },
-                                              title: const Text('Copy'),
-                                              trailing: const Icon(Icons.copy),
-                                            ),
-                                            const Divider(
-                                                color: Colors.blueGrey,
-                                                height: 5.0),
-                                            ListTile(
-                                              onTap: () {
-                                                viewModel.deleteNote(viewModel
-                                                    .data.docs[index].id);
-                                              },
-                                              title: const Text('Delete'),
-                                              trailing: const Icon(
-                                                  Icons.delete_forever),
-                                            ),
-                                            const Divider(
-                                                color: Colors.blueGrey,
-                                                height: 5.0),
-                                            ListTile(
-                                              onTap: () {
-                                                viewModel.shareContent(
-                                                    context,
-                                                    viewModel.data.docs[index]
-                                                        ['plainText']);
-                                              },
-                                              title: const Text('Share'),
-                                              trailing: const Icon(Icons.share),
-                                            ),
-                                            const Divider(
-                                                color: Colors.blueGrey,
-                                                height: 5.0),
-                                            const ListTile(
-                                              title: Text('Edit'),
-                                              trailing: Icon(Icons.edit),
-                                            ),
-                                            const Divider(
-                                                color: Colors.blueGrey,
-                                                height: 5.0),
-                                          ],
-                                        ),
-                                        child: GestureDetector(
-                                          child: Card(
-                                            child: ListTile(
-                                              onTap: () {
-                                                viewModel.navigateToEditNoteView(
-                                                    viewModel.data.docs[index]);
-                                              },
-                                              tileColor:
-                                                  viewModel.getCategoryColor(
-                                                      viewModel.data.docs[index]
-                                                          ['category']),
-                                              title: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  viewModel.data.docs[index]
-                                                      ['plainText'],
-                                                  maxLines: 10,
-                                                  overflow: TextOverflow.ellipsis,
-                                                ),
+                                  if (viewModel.isBusy) const Loader(),
+                                  if (viewModel.hasError)
+                                    Text(
+                                      viewModel.error.toString(),
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
+                                  if (viewModel.data == null && viewModel.dataReady)
+                                    const Center(child: Text('No notes added yet')),
+                                  if (viewModel.dataReady)
+                                    MasonryGridView.builder(
+                                      controller: scrollController,
+                                      shrinkWrap: true,
+                                      gridDelegate:
+                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2),
+                                      itemBuilder: (context, index) {
+                                        return FocusedMenuHandler(
+                                          menuContent: Column(
+                                            children: [
+                                              ListTile(
+                                                onTap: () {
+                                                  viewModel.copyText(viewModel.data
+                                                      .docs[index]['plainText']);
+                                                },
+                                                title: const Text('Copy'),
+                                                trailing: const Icon(Icons.copy),
                                               ),
-                                              titleTextStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge,
-                                              subtitle: Text(
-                                                  'Category:${viewModel.data.docs[index]['category']}'),
-                                              subtitleTextStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .labelSmall,
-                                              // onTap: () {},
+                                              const Divider(
+                                                  color: Colors.blueGrey,
+                                                  height: 5.0),
+                                              ListTile(
+                                                onTap: () {
+                                                  viewModel.deleteNote(viewModel
+                                                      .data.docs[index].id);
+                                                },
+                                                title: const Text('Delete'),
+                                                trailing: const Icon(
+                                                    Icons.delete_forever),
+                                              ),
+                                              const Divider(
+                                                  color: Colors.blueGrey,
+                                                  height: 5.0),
+                                              ListTile(
+                                                onTap: () {
+                                                  viewModel.shareContent(
+                                                      context,
+                                                      viewModel.data.docs[index]
+                                                          ['plainText']);
+                                                },
+                                                title: const Text('Share'),
+                                                trailing: const Icon(Icons.share),
+                                              ),
+                                              const Divider(
+                                                  color: Colors.blueGrey,
+                                                  height: 5.0),
+                                              const ListTile(
+                                                title: Text('Edit'),
+                                                trailing: Icon(Icons.edit),
+                                              ),
+                                              const Divider(
+                                                  color: Colors.blueGrey,
+                                                  height: 5.0),
+                                            ],
+                                          ),
+                                          child: GestureDetector(
+                                            child: Card(
+                                              child: ListTile(
+                                                onTap: () {
+                                                  viewModel.navigateToEditNoteView(
+                                                      viewModel.data.docs[index]);
+                                                },
+                                                tileColor:
+                                                    viewModel.getCategoryColor(
+                                                        viewModel.data.docs[index]
+                                                            ['category']),
+                                                title: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    viewModel.data.docs[index]
+                                                        ['plainText'],
+                                                    maxLines: 10,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                                titleTextStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyLarge,
+                                                subtitle: Text(
+                                                    'Category:${viewModel.data.docs[index]['category']}'),
+                                                subtitleTextStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .labelSmall,
+                                                // onTap: () {},
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    itemCount: viewModel.data.docs.length,
-                                  )
-                              ],
+                                        );
+                                      },
+                                      itemCount: viewModel.data.docs.length,
+                                    )
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                    ),
               ),
             ),
             
