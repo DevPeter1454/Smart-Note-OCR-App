@@ -11,6 +11,7 @@ class CustomTextfield extends StatefulWidget {
   final String? helperText;
   final bool hasValidationMessage;
   final TextInputType? textInputType;
+  final String? initialValue;
 
   const CustomTextfield({
     Key? key,
@@ -21,7 +22,7 @@ class CustomTextfield extends StatefulWidget {
     this.labelText,
     this.helperText,
     this.hasValidationMessage = false,
-    this.textInputType,
+    this.textInputType, this.initialValue,
   }) : super(key: key);
 
   @override

@@ -13,7 +13,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:share_plus/share_plus.dart';
 
 class NotesViewModel extends StreamViewModel {
-
   final _navigationService = locator<NavigationService>();
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();

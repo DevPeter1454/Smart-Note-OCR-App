@@ -84,9 +84,21 @@ class AddNoteViewModel extends BaseViewModel {
   void init() {
     // log.i(_noteService.currentNote!.content);
     if (_noteService.currentNote == null) {
+      log.d('new note');
+      log.d(_noteService.fromImageToText);
       _controller.document = Document.fromDelta(Delta()..insert('\n'));
     
     } else {
+      if(_noteService.fromImageToText == true){
+        log.d('from image to text');
+        _controller.document = Document.fromDelta(Delta()..insert(_noteService.currentNote!.content));
+        notifyListeners();
+        _title = 'Add Note';
+        _tag = 0;
+        _currentCategory = options[0];
+        notifyListeners();
+
+    }else{
       NoteModel? currentNote = _noteService.currentNote;
       // log.d(currentNote!.id);
       _controller.document = Document.fromJson(currentNote!.content);
@@ -95,6 +107,7 @@ class AddNoteViewModel extends BaseViewModel {
       _title = 'Edit Note';
       notifyListeners();
     }
+  }
   }
 
   Future<void> updateNote() async {
@@ -127,9 +140,15 @@ class AddNoteViewModel extends BaseViewModel {
   }
 
   Future<void> saveNote() async {
-    if (_noteService.currentNote == null) {
+    if (_noteService.currentNote == null ) {
       addNote();
-    } else {
+    } else if(_noteService.currentNote != null && _noteService.fromImageToText == true){
+      addNote();
+        _noteService.setFromImageToText(false);
+        _noteService.clearCurrentNote();  
+    }
+    
+     else {
       updateNote();
     }
     _noteService.clearCurrentNote();
