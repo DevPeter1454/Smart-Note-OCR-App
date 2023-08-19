@@ -67,7 +67,7 @@ class StartupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.reactive(
       builder: (context, viewModel, child) {
-        if (viewModel.data != null) {
+        if (viewModel.currentUser != null) {
           return const HomeView();
         }
         return const LoginView();

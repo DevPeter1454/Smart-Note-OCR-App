@@ -117,6 +117,27 @@ class FirestoreService {
         .snapshots();
   }
 
+  Stream<QuerySnapshot> getChats() {
+    log.d('Getting Chat');
+    return _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('chats')
+        .orderBy('createTime', descending: false)
+        .snapshots();
+  }
+
+  Future<void> sendPrompt({required String message}) async {
+    await _firebaseFirestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('chats')
+        .doc()
+        .set({
+      'prompt': message,
+    });
+  }
+
   Stream<DocumentSnapshot> getNoteDetail({required String noteId}) {
     return _firebaseFirestore
         .collection('users')
@@ -132,7 +153,8 @@ class FirestoreService {
     QuerySnapshot notesSnapshot = await notesCollection.get();
     for (QueryDocumentSnapshot noteDocument in notesSnapshot.docs) {
       // Access the data of each note document
-      Map<String, dynamic> noteData = noteDocument.data() as Map<String, dynamic>;
+      Map<String, dynamic> noteData =
+          noteDocument.data() as Map<String, dynamic>;
 
       // Compare the 'file' parameter with your desired value
       String fileValue = noteData['file'] as String;
