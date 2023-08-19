@@ -125,4 +125,23 @@ class FirestoreService {
         .doc(noteId)
         .snapshots();
   }
+
+  Future<dynamic> getExtractedImage({required String fileName}) async {
+    final notesCollection =
+        _firebaseFirestore.collection('users/extractedTexts/notes');
+    QuerySnapshot notesSnapshot = await notesCollection.get();
+    for (QueryDocumentSnapshot noteDocument in notesSnapshot.docs) {
+      // Access the data of each note document
+      Map<String, dynamic> noteData = noteDocument.data() as Map<String, dynamic>;
+
+      // Compare the 'file' parameter with your desired value
+      String fileValue = noteData['file'] as String;
+
+      // Perform your comparison here
+      if (fileValue == fileName) {
+        // Do something when the comparison is true
+        return noteDocument.data();
+      }
+    }
+  }
 }

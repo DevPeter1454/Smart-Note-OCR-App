@@ -4,6 +4,15 @@ class NotesService {
   List<NoteModel> _notesList = [];
   List<NoteModel> get notesList => _notesList;
 
+  bool _fromImageToText = false;
+
+  bool get fromImageToText => _fromImageToText;
+
+  void setFromImageToText(bool fromImageToText) {
+    _fromImageToText = fromImageToText;
+  }
+
+
   NoteModel? _currentNote;
   NoteModel? get currentNote => _currentNote;
 
@@ -13,6 +22,7 @@ class NotesService {
 
   void setCurrentNote(NoteModel currentNote) {
     _currentNote = currentNote;
+   
   }
 
   void clearCurrentNote() {

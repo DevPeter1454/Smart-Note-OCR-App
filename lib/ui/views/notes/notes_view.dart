@@ -31,8 +31,8 @@ class NotesView extends StatelessWidget {
               openIcon: Icons.menu,
               closeIcon: Icons.close,
               items: [
-                HawkFabMenuItem(label: 'Scan Note', ontap: viewModel.navigateToSelectImageVIew, icon: Icon(Icons.camera_alt)),
-                HawkFabMenuItem(label: 'Add Note', ontap: viewModel.navigateToCreateNoteView, icon: Icon(Icons.add)),
+                HawkFabMenuItem(label: 'Scan Note', ontap: viewModel.navigateToSelectImageVIew, icon: const Icon(Icons.camera_alt)),
+                HawkFabMenuItem(label: 'Add Note', ontap: viewModel.navigateToCreateNoteView, icon: const Icon(Icons.add)),
                 
               ],
               body: Container(
@@ -59,8 +59,8 @@ class NotesView extends StatelessWidget {
                                   DateTime.now().hour < 12
                                       ? 'Good Morning ${viewModel.name} 👋'
                                       : DateTime.now().hour < 17
-                                          ? 'Good Afternoon 👋'
-                                          : 'Good Evening 👋',
+                                          ? 'Good Afternoon ${viewModel.name}👋'
+                                          : 'Good Evening ${viewModel.name} 👋',
                                   style:
                                       Theme.of(context).textTheme.headlineMedium,
                                 ),

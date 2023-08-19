@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/ui/common/ui_helpers.dart';
+import 'package:smartnote/ui/widgets/common/loader/loader.dart';
 import 'package:stacked/stacked.dart';
 
 import 'select_image_viewmodel.dart';
@@ -32,7 +33,7 @@ class SelectImageView extends StackedView<SelectImageViewModel> {
                 ),
         padding: const EdgeInsets.only(left: 25.0, right: 25.0),
         child: Center(
-          child: Column(
+          child: viewModel.isBusy?const Loader() : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
