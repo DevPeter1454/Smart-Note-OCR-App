@@ -97,14 +97,21 @@ class SelectImageViewModel extends BaseViewModel {
       });
 
       _snackbarService.showSnackbar(
-          message: 'Image uploaded successfully',
+          message: 'Image uploaded successfully, please wait for processing',
           duration: const Duration(seconds: 2),
           title: 'Upload Image');
       notifyListeners();
       setBusy(false);
-      Future.delayed(const Duration(seconds: 2), () async {
+      Future.delayed(const Duration(seconds: 1), () async {
         final result =
             await _firestoreService.getExtractedImage(fileName: fileName!);
+        if(result == null){
+          _snackbarService.showSnackbar(
+              message: 'Image not processed yet, please try again later or try another image' ,
+              duration: const Duration(seconds: 2),
+              title: 'Upload Image');
+          return;
+        }
         if (result != null) {
           log.i('result: ${result['text']}');
           _notesService.setCurrentNote(NoteModel(

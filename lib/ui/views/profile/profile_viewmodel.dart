@@ -46,7 +46,8 @@ class ProfileViewModel extends FormViewModel {
   Future<void> uploadImage() async {
     setBusy(true);
     try {
-      final uploadTask = storageRef.child('user/avatar/$imageName').putFile(image);
+      final uploadTask =
+          storageRef.child('user/avatar/$imageName').putFile(image);
       await uploadTask.whenComplete(() async {
         final downloadUrl = await uploadTask.snapshot.ref.getDownloadURL();
         await _firestoreService.updatePhotoUrl(url: downloadUrl);
@@ -74,9 +75,17 @@ class ProfileViewModel extends FormViewModel {
 
   String? get photoUrl => _photoUrl;
 
+  String? _name;
+  String? _email;
+
+  String? get name => _name;
+  String? get email => _email;
+
   void init() {
     nameValue = _userService.userData!.displayName;
     emailValue = _userService.userData!.email;
+    _name =_userService.userData!.displayName;
+    _email = _userService.userData!.email;
     _photoUrl = _userService.userData!.photoURL;
     _profileInitial = _userService.userData!.displayName.split(' ').first;
     notifyListeners();
@@ -90,11 +99,19 @@ class ProfileViewModel extends FormViewModel {
     }
   }
 
-  void logout()async{
-    // _snackBarService
-    await _authenticationService.signOut();
-    _navigationService.clearStackAndShow(Routes.startupView);
+  void logout() async {
+    _snackBarService.showSnackbar(
+        message: 'Are you sure you want to log out?',
+        duration: const Duration(seconds: 2),
+        title: 'Log out',
+        mainButtonTitle: 'Yes',
+        onMainButtonTapped: () async {
 
+          await _authenticationService.signOut();
+          _userService.clearUserModel();
+          _navigationService.clearStackAndShow(Routes.startupView);
+        });
+    return;
   }
 
   @override

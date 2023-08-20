@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartnote/models/chat_model.dart';
 import 'package:smartnote/ui/common/ui_helpers.dart';
-import 'package:smartnote/ui/views/focused_menu/focused_menu_handler.dart';
 import 'package:smartnote/ui/widgets/common/chat_widget/chat_bubble.dart';
 import 'package:smartnote/ui/widgets/common/chat_widget/chat_textfeild.dart';
 import 'package:smartnote/ui/widgets/common/loader/loader.dart';

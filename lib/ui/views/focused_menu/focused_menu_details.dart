@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:smartnote/ui/common/ui_helpers.dart';
 
 class FocusedMenuDetails extends StatelessWidget {
   final Offset childOffset;
@@ -20,7 +21,7 @@ class FocusedMenuDetails extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     final maxMenuWidth = size.width * 0.70;
-    final menuHeight = size.height * 0.45;
+    final menuHeight = screenHeightFraction(context,dividedBy: 2.5);
     final leftOffset = (childOffset.dx + maxMenuWidth) < size.width
         ? childOffset.dx
         : (childOffset.dx - maxMenuWidth + childSize.width);

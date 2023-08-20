@@ -42,10 +42,7 @@ class SelectImageView extends StackedView<SelectImageViewModel> {
                 child: const Text('Select Image from Gallery'),
               ),
               verticalSpaceMedium,
-              ElevatedButton(
-                onPressed: () => viewModel.getImageFromCamera(),
-                child: const Text('Select Image from Camera'),
-              ),
+             
             ],
           ),
         ),

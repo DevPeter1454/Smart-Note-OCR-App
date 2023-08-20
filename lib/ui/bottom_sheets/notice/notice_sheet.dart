@@ -15,38 +15,56 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
     required this.request,
   }) : super(key: key);
 
+  static ScrollController scrollController = ScrollController();
+
   @override
   Widget builder(
     BuildContext context,
     NoticeSheetModel viewModel,
     Widget? child,
   ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          topRight: Radius.circular(10),
+
+
+    return SingleChildScrollView(
+      controller: scrollController,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        // height: MediaQuery.of(context).size.height * 0.8,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+          
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            request.title!,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
-          ),
-          verticalSpaceTiny,
-          Text(
-            request.description!,
-            style: const TextStyle(fontSize: 14, color: kcMediumGrey),
-            maxLines: 3,
-            softWrap: true,
-          ),
-          verticalSpaceLarge,
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  request.title!,
+                  style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+                ),
+                IconButton(onPressed: (){
+                  viewModel.copyText(request.description!);
+                }, icon: const  Icon(Icons.copy, color: kcBackgroundColor, size: 16,))
+              ],
+            ),
+            verticalSpaceTiny,
+            Text(
+              request.description!,
+              style: const TextStyle(fontSize: 14, color: kcMediumGrey),
+              // maxLines: 3,
+              softWrap: true,
+            ),
+            verticalSpaceLarge,
+          ],
+        ),
       ),
     );
   }

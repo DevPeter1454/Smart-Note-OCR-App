@@ -123,9 +123,10 @@ class NotesView extends StatelessWidget {
                                               const Divider(
                                                   color: Colors.blueGrey,
                                                   height: 5.0),
-                                              const ListTile(
-                                                title: Text('Edit'),
-                                                trailing: Icon(Icons.edit),
+                                               ListTile(
+                                                title: const Text('Summary'),
+                                                trailing:const  Icon(Icons.summarize),
+                                                onTap: () => viewModel.showSummary(text: viewModel.data.docs[index]['summary'], context: context),
                                               ),
                                               const Divider(
                                                   color: Colors.blueGrey,

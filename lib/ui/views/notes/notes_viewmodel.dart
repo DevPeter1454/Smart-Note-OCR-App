@@ -1,6 +1,7 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:smartnote/app/app.bottomsheets.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/app/app.router.dart';
@@ -18,6 +19,7 @@ class NotesViewModel extends StreamViewModel {
   final _snackbarService = locator<SnackbarService>();
   final _notesService = locator<NotesService>();
   final _userService = locator<UserService>();
+  final _bottomSheetService = locator<BottomSheetService>();
   final log = getLogger('NotesViewModel');
 
   void navigateToCreateNoteView() {
@@ -37,6 +39,7 @@ class NotesViewModel extends StreamViewModel {
     try {
       final response = await _firestoreService.getUserDetails();
       _userService.setUserModel(response);
+      notifyListeners();
       log.d(_userService.userData!.email);
     } catch (e) {
       _snackbarService.showSnackbar(message: e.toString());
@@ -129,9 +132,16 @@ class NotesViewModel extends StreamViewModel {
     setBusy(false);
   }
 
+
+
   void shareContent(BuildContext context, String text) {
     _navigationService.back();
     Share.share(text);
+  }
+
+  void showSummary({required String text, required BuildContext context}){
+    Navigator.pop(context);
+    _bottomSheetService.showCustomSheet(variant: BottomSheetType.notice,title: 'Summary',description: text, isScrollControlled: true);
   }
 
   @override

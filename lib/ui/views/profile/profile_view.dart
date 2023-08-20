@@ -97,18 +97,16 @@ class ProfileView extends StackedView<ProfileViewModel> with $ProfileView {
                       CustomTextfield(
                         controller: nameController,
                         labelText: 'Display name',
+                        initialValue: viewModel.name,
                       ),
                       verticalSpaceMedium,
                       CustomTextfield(
                         controller: emailController,
                         labelText: 'Email',
+                        initialValue: viewModel.email,
                       ),
                       verticalSpaceMedium,
-                      CustomTextfield(
-                        controller: passwordController,
-                        labelText: 'Password',
-                      ),
-                      verticalSpaceMedium,
+                      
                       CustomButton(onPressed: viewModel.logout, backgroundColor: kcBackgroundColor, text: 'Log out', style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white), size: Size(screenWidth(context), 50)),
                     ],
                   ),
