@@ -31,8 +31,8 @@ class NotesView extends StatelessWidget {
               openIcon: Icons.menu,
               closeIcon: Icons.close,
               items: [
-                HawkFabMenuItem(label: 'Scan Note', ontap: viewModel.navigateToSelectImageVIew, icon: const Icon(Icons.camera_alt)),
-                HawkFabMenuItem(label: 'Add Note', ontap: viewModel.navigateToCreateNoteView, icon: const Icon(Icons.add)),
+                HawkFabMenuItem(label: 'Scan Note', ontap: viewModel.navigateToSelectImageVIew, icon: const Icon(Icons.camera_alt, ), color: kcBackgroundColor,),
+                HawkFabMenuItem(label: 'Add Note', ontap: viewModel.navigateToCreateNoteView, icon: const Icon(Icons.add), color: kcBackgroundColor,),
                 
               ],
               body: Container(

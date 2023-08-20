@@ -135,7 +135,7 @@ class FirestoreService {
         .doc()
         .set({
       'prompt': message,
-    });
+    }).then((value) => log.d('Prompt Sent'));
   }
 
   Stream<DocumentSnapshot> getNoteDetail({required String noteId}) {

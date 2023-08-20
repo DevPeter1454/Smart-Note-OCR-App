@@ -102,7 +102,7 @@ class SelectImageViewModel extends BaseViewModel {
           title: 'Upload Image');
       notifyListeners();
       setBusy(false);
-      Future.delayed(const Duration(seconds: 1), () async {
+      Future.delayed(const Duration(seconds: 2), () async {
         final result =
             await _firestoreService.getExtractedImage(fileName: fileName!);
         if(result == null){

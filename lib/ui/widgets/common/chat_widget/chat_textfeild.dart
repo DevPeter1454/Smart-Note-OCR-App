@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:smartnote/ui/common/app_colors.dart';
 
 class BottomTextField extends StatelessWidget {
   final Function() onPressed;
@@ -27,7 +28,7 @@ class BottomTextField extends StatelessWidget {
                   controller: txt,
                   style: const TextStyle(fontSize: 14),
                   decoration: const InputDecoration(
-                    hintText: 'Type something...',
+                    hintText: 'Enter a prompt here',
                     border: InputBorder.none,
                   ),
                 ),
@@ -42,7 +43,7 @@ class BottomTextField extends StatelessWidget {
                 ),
                 child: Icon(
                   Icons.send,
-                  color: Colors.blue,
+                  color: kcBackgroundColor,
                 ),
               ),
             ),

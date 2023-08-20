@@ -1,4 +1,3 @@
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smartnote/app/app.bottomsheets.dart';
@@ -9,21 +8,12 @@ import 'package:smartnote/ui/common/app_colors.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-// import 'package:firebase_auth_platform_interface/src/action_code_settings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseUIAuth.configureProviders([
-    EmailAuthProvider(),
-    // GoogleProvider(
-    //     clientId:
-    //         '187372280063-4s9s9i44jlvr8cg9j5jpm27g4h1n7s6d.apps.googleusercontent.com',
-    //     redirectUri:
-    //         'https://smart-notes-5682c.firebaseapp.com/__/auth/handler'),
-  ]);
 
   await setupLocator();
   setupDialogUi();

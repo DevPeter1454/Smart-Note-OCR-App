@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:smartnote/app/app.locator.dart';
 import 'package:smartnote/app/app.logger.dart';
 import 'package:smartnote/models/chat_model.dart';
-import 'package:smartnote/services/chat_serviece.dart';
 import 'package:smartnote/services/firestore_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -14,7 +13,7 @@ class ChatsViewModel extends StreamViewModel {
   final _firestoreService = locator<FirestoreService>();
   final _snackbarService = locator<SnackbarService>();
   final _userService = locator<UserService>();
-  final _chatService = ChatService();
+  // final _chatService = ChatService();
   final TextEditingController promptController = TextEditingController();
   final log = getLogger('ChatsViewModel');
   List<ChatModel> chats = [];
@@ -22,24 +21,23 @@ class ChatsViewModel extends StreamViewModel {
 
   String? get profileInitial => _profileInitial;
 
-  // List<ChatModel> convertDocsToChat(List<QueryDocumentSnapshot> docs) {
+  String? _photoUrl;
+  String? get photoUrl => _photoUrl;
 
-  //   docs.forEach((doc) {
-  //     chats.add(ChatModel.fromMap(doc.data()));
-  //   });
-  //   return chats;
-  // }
 
   Future<void> addChat() async {
+    setBusy(true);
     if (promptController.text.isNotEmpty) {
       try {
-        await _firestoreService.sendPrompt(message: promptController.text);
+        await _firestoreService.sendPrompt(message: promptController.text).then((value) { log.i('value');});
         promptController.clear();
+        _snackbarService.showSnackbar(message: 'Message sent', duration: const Duration(seconds: 1));
+
       } catch (e) {
-        _snackbarService.showSnackbar(message: e.toString());
+        _snackbarService.showSnackbar(message: e.toString(), duration: const Duration(seconds: 1));
       }
     } else {
-      _snackbarService.showSnackbar(message: 'Please enter a prompt');
+      _snackbarService.showSnackbar(message: 'Please enter a prompt', duration: const Duration(seconds: 1));
     }
   }
 
@@ -52,10 +50,14 @@ class ChatsViewModel extends StreamViewModel {
     log.i('start');
     //_chatService.setChatList(convertDocsToChat(data.docs));
     log.i('End');
+    setBusy(false);
+
     if (data == null) {
       _snackbarService.showSnackbar(message: 'No Chat yet');
     }
+    
     notifyListeners();
+    
   }
 
   @override
@@ -71,7 +73,8 @@ class ChatsViewModel extends StreamViewModel {
   }
 
   void init() {
-    _profileInitial = _userService.userData!.displayName.split(' ').first;
+    _profileInitial = _userService.userData!.displayName.split(' ').first; 
+    _photoUrl = _userService.userData!.photoURL;
     notifyListeners();
   }
 }

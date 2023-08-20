@@ -37,11 +37,33 @@ class HomeView extends StackedView<HomeViewModel> {
         },
         child: getViewForIndex(viewModel.currentIndex),
       ),
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-          activeColor: kcButtonColor,
-          icons: getIconList(),
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          itemCount: 3,
+          tabBuilder: (index, isActive) => Padding(
+            padding: const EdgeInsets.only(top:4.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  getIconList()[index],
+                  size: 24,
+                  color: isActive ? kcButtonColor : Colors.black,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                 getTitleList()[index],
+                  style: TextStyle(
+                    color: isActive ? kcButtonColor : Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              ],
+            ),
+          ),
+          // activeColor: kcButtonColor,
+          // icons: getIconList(),
           activeIndex: viewModel.currentIndex,
-          // blurEffect: true,
+          blurEffect: true,
           elevation: 0.0,
           gapLocation: GapLocation.none,
           notchSmoothness: NotchSmoothness.defaultEdge,
@@ -71,5 +93,10 @@ class HomeView extends StackedView<HomeViewModel> {
   List<IconData> getIconList() {
     final List<IconData> iconList = [Icons.notes, Icons.chat, Icons.person];
     return iconList;
+  }
+
+  List<String> getTitleList() {
+    final List<String> titleList = ['Notes', 'Ask AI', 'Profile'];
+    return titleList;
   }
 }

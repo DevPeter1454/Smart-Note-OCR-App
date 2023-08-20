@@ -82,13 +82,14 @@ class ProfileViewModel extends FormViewModel {
   String? get email => _email;
 
   void init() {
+    log.d(_userService.userData!.displayName);
     nameValue = _userService.userData!.displayName;
     emailValue = _userService.userData!.email;
     _name =_userService.userData!.displayName;
     _email = _userService.userData!.email;
     _photoUrl = _userService.userData!.photoURL;
     _profileInitial = _userService.userData!.displayName.split(' ').first;
-    notifyListeners();
+    rebuildUi();
   }
 
   String trimString(String text, int maxLength) {

@@ -11,6 +11,7 @@ import 'chats_viewmodel.dart';
 class ChatsView extends StatelessWidget {
   const ChatsView({Key? key}) : super(key: key);
 
+ 
   @override
   Widget build(
     BuildContext context,
@@ -49,9 +50,11 @@ class ChatsView extends StatelessWidget {
                                   child: Text('No notes added yet'));
                             }
                             if (viewModel.dataReady) {
+
                               return ListView.builder(
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
+                                
                                 itemBuilder: (context, index) {
                                   final data = viewModel.data.docs[index];
                                   ChatModel chatModel = ChatModel(
@@ -65,9 +68,11 @@ class ChatsView extends StatelessWidget {
                                     chat: chatModel,
                                     profileInitial:
                                         viewModel.profileInitial![0],
+                                    photoUrl: viewModel.photoUrl,
                                   );
                                 },
                                 itemCount: viewModel.data.docs.length,
+                                
                               );
                             }
 
@@ -79,12 +84,15 @@ class ChatsView extends StatelessWidget {
               BottomTextField(
                 onPressed: () {
                   viewModel.addChat();
+                  FocusScope.of(context).unfocus();
                 },
                 txt: viewModel.promptController,
               ),
             ],
           ),
-        );
+          
+    );
+        
       },
       viewModelBuilder: () => ChatsViewModel(),
     );

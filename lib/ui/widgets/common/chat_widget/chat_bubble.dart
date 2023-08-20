@@ -6,8 +6,9 @@ import '../../../common/app_colors.dart';
 class ChatBubble extends StatelessWidget {
   final ChatModel chat;
   final String profileInitial;
+  final String? photoUrl;
   const ChatBubble(
-      {super.key, required this.chat, required this.profileInitial});
+      {super.key, required this.chat, required this.profileInitial, this.photoUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +26,12 @@ class ChatBubble extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                chat.prompt,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  chat.prompt,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ),
               const SizedBox(width: 8),
@@ -40,14 +42,16 @@ class ChatBubble extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: Colors.grey[100],
                     radius: 20.0,
-                    child: Text(profileInitial,
+                    backgroundImage: photoUrl != null ? NetworkImage(photoUrl!) : null,
+                    child: photoUrl == null ? 
+                     Text(profileInitial,
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
                             .copyWith(
                               color: kcButtonColor,
                               fontWeight: FontWeight.bold,
-                            )),
+                            )) : null,
                   )),
             ],
           ),
