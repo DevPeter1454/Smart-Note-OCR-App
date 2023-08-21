@@ -1,6 +1,6 @@
 # Description
 
-Smart Notes App IS a note-taking app that uses Firebase ML Kit's Optical Character Recognition (OCR) capabilities to scan handwritten or printed text from images and convert them into editable digital text. Also allows users to chat and share notes
+Smart Notes App with OCR: A note-taking app that uses the Cloud Vision API FIrebase Extension capabilities to scan handwritten or printed text from images and convert them into editable digital text. Also it provided users with the summary for each document, and also they get a chance to chant with an AI bot 
 
 ## Repo structure
 This repository makes use of [stacked](https://stacked.filledstacks.com/) and it's architecture, which is an MVVM(Model-View-ViewModel) pattern. 
